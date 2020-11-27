@@ -1,0 +1,36 @@
+﻿<Page x:Class="BillboardsProject.AdminRoom"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+xmlns:local="clr-namespace:BillboardsProject"
+mc:Ignorable="d"
+xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+Title="Billboards" >
+    <Grid Background="#ffdada">
+        <Border MinWidth="400" Margin="15" Background="White" VerticalAlignment="Center" Padding="40" MaxWidth="800" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Text="Admin room" FontSize="30" FontWeight="Bold" Margin="0 0 0 20"/>
+                <Grid>
+                    <Button HorizontalAlignment="Right" Content="Sign out" Click="Button_Click_Authorization"  Style="{StaticResource MaterialDesignFlatButton}"/>
+                </Grid>
+                <Grid Margin="20" Height="auto" Width="auto">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button HorizontalAlignment="Center" Grid.Column="0" FontSize="20" Content="Billboards"  Click="Button_Click_Billboards" Style = "{StaticResource MaterialDesignFlatButton}"/>
+                    <Button HorizontalAlignment="Center" Grid.Column="1" FontSize="20" Content="Users"  Click="Button_Click_Users" Style = "{StaticResource MaterialDesignFlatButton}"/>
+                    <Button  HorizontalAlignment="Center" Grid.Column="2" FontSize="20"  Content="Logs" Click="Button_Click_Logs" Style = "{StaticResource MaterialDesignFlatButton}"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>
