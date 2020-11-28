@@ -9,7 +9,7 @@ namespace BillboardsProject
 {
     public partial class Registration : Page, IRegistration
     {
-        public  delegate void ValidationDelegate(object sender, EventArgs e, string login, string password, string passwordRepeat);
+        public  delegate bool ValidationDelegate(object sender, EventArgs e, string login, string password, string passwordRepeat);
         public  event EventHandler AutorizationEvent;
         public  event ValidationDelegate ValidationEvent;
         public IRegistration iregistration;
@@ -34,13 +34,20 @@ namespace BillboardsProject
 
         private void Button_Click_Validation(object sender, RoutedEventArgs e)
         {
-            Validation();
-            ValidationEvent.Invoke(sender, e, RegistrationLogin, RegistrationPassword, RegistrationPasswordRepeat);
-            this.NavigationService.Navigate(new UserRoom());
+            if (Validation())
+            {
+                if (ValidationEvent.Invoke(sender, e, RegistrationLogin, RegistrationPassword, RegistrationPasswordRepeat))
+                {
+                    this.NavigationService.Navigate(new UserRoom());
+                }
+
+            }
+       
         }
 
-        public void Validation()
+        public bool Validation()
         {
+            bool validationParametr = true;
             RegistrationLogin = textBoxLogin.Text;
             RegistrationPassword = pass_box.Password;
             RegistrationPasswordRepeat = pass_box2.Password;
@@ -52,26 +59,31 @@ namespace BillboardsProject
             {
                 textBoxLogin.ToolTip = "Некорректный логин";
                 textBoxLogin.Background = Brushes.IndianRed;
+                validationParametr = false;
             }
             else if (password.Length < 7)
             {
                 pass_box.ToolTip = "Некорректный пароль";
                 pass_box.Background = Brushes.IndianRed;
+                validationParametr = false;
             }
             else if (password != passwordRepeat)
             {
                 pass_box2.ToolTip = "Некорректный пароль";
                 pass_box2.Background = Brushes.IndianRed;
+                validationParametr = false;
             }
             else
             {
                 textBoxLogin.ToolTip = "";
-                textBoxLogin.Background = Brushes.Transparent;
+                textBoxLogin.Background = Brushes.White;
                 pass_box.ToolTip = "";
-                textBoxLogin.Background = Brushes.Transparent;
+                textBoxLogin.Background = Brushes.White;
                 pass_box2.ToolTip = "";
-                textBoxLogin.Background = Brushes.Transparent;
+                textBoxLogin.Background = Brushes.White;
+                validationParametr = true;
             }
+            return validationParametr;
         }
     }
 }
