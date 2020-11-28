@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BillboardsProject.ViewModel
 {
-    interface IAuthorization
+    public interface IAuthorization
     {
         string AuthorizationLogin { get; set; }
         string AuthorizationPassword { get; set; }

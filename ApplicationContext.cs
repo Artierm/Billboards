@@ -5,17 +5,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BillboardsProject
 {
-    class ApplicationContext:DbContext
+    class ApplicationContext : DbContext
     {
-         public DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Billboard> Billboards { get; set; }
       
 
         public ApplicationContext()
         {
-        //    Database.EnsureDeleted(); // удаляем бд со старой схемой
-        //    Database.EnsureCreated(); // создаем бд с новой схемой
+            //Database.EnsureDeleted(); // удаляем бд со старой схемой
+            //Database.EnsureCreated(); // создаем бд с новой схемой
         }
-
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

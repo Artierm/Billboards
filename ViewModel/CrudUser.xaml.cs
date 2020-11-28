@@ -11,13 +11,13 @@ namespace BillboardsProject
         public CrudUser()
         {
             InitializeComponent();
-            //List<Owner> usersList = new List<Owner>
-            //{
-            //    new Owner {Name="Artyom Yermak",  IdBillboards = "1 2 5", AmountOfBillboards = 3},
-            //    new Owner {Name="Maks Stankevich",  IdBillboards = "3 6", AmountOfBillboards = 2},
-            //    new Owner {Name="Sasha Bibilov",  IdBillboards = "4", AmountOfBillboards = 1}
-            //};
-            //usersGrid.ItemsSource = usersList;
+            List<Owner> usersList = new List<Owner>
+            {
+                new Owner {Name="Artyom Yermak",  IdBillboards = "1 2 5", AmountOfBillboards = 3},
+                new Owner {Name="Maks Stankevich",  IdBillboards = "3 6", AmountOfBillboards = 2},
+                new Owner {Name="Sasha Bibilov",  IdBillboards = "4", AmountOfBillboards = 1}
+            };
+            usersGrid.ItemsSource = usersList;
         }
 
         public void Button_Click_Back(object sender, RoutedEventArgs e)

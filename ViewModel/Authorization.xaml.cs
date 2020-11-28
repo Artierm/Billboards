@@ -10,8 +10,9 @@ namespace BillboardsProject
 {
     public partial class Authorization : Page, IAuthorization
     {
-        public IRegistration registrationView;
-        public delegate bool AuthorizationHandler(object sender, EventArgs e, string login, string password);
+        public static int IdUser { get; set; }
+        public ICreateBillboard registrationView;
+        public delegate bool AuthorizationHandler(object sender, EventArgs e, string login, string password, out bool admin, out int idUser);
         public event EventHandler AdminEvent;
         public event AuthorizationHandler UserEvent;
         public event EventHandler RegistrationEvent;
@@ -35,9 +36,18 @@ namespace BillboardsProject
 
         public void Button_Click_User(object sender, RoutedEventArgs e)
         {
-            if(UserEvent.Invoke(sender, e, AuthorizationLogin, AuthorizationPassword))
+            if(UserEvent.Invoke(sender, e, AuthorizationLogin, AuthorizationPassword, out bool admin, out int idUser))
             {
-                this.NavigationService.Navigate(new UserRoom());
+                if (admin)
+                {
+                    this.NavigationService.Navigate(new AdminRoom());
+                }
+                else
+                {
+                    this.NavigationService.Navigate(new UserRoom());
+                }
+                IdUser = idUser;
+               
             }
             else
             {

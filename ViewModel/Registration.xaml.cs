@@ -7,18 +7,18 @@ using System.Windows.Media;
 
 namespace BillboardsProject
 {
-    public partial class Registration : Page, IRegistration
+    public partial class Registration : Page, ICreateBillboard
     {
         public  delegate bool ValidationDelegate(object sender, EventArgs e, string login, string password, string passwordRepeat);
         public  event EventHandler AutorizationEvent;
         public  event ValidationDelegate ValidationEvent;
-        public IRegistration iregistration;
+        public ICreateBillboard iregistration;
 
         public string RegistrationLogin { get => textBoxLogin.Text.Trim(); set => textBoxLogin.Text = value.Trim(); }
         public string RegistrationPassword { get => pass_box.Password.Trim(); set => pass_box.Password = value.Trim(); }
         public string RegistrationPasswordRepeat { get => pass_box2.Password.Trim(); set => pass_box2.Password = value.Trim(); }
 
-        public Registration(IRegistration ireg)
+        public Registration(ICreateBillboard ireg)
         {
             this.iregistration = ireg;
             InitializeComponent();

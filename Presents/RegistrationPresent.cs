@@ -12,11 +12,11 @@ namespace BillboardsProject.Presents
     class RegistrationPresent
     {
 
-        public IRegistration registrationView;
+        public ICreateBillboard registrationView;
         Registration registration;
         ApplicationContext Db;
 
-        public RegistrationPresent(Registration registration, IRegistration view)
+        public RegistrationPresent(Registration registration, ICreateBillboard view)
         {
             this.registration = registration;
             Db = new ApplicationContext();   //Почему здесь 
@@ -45,7 +45,8 @@ namespace BillboardsProject.Presents
                     string errorMessage = FormattableString.Invariant($"This login already exists");
                     MessageBox.Show(errorMessage);
                 }
-                
+                var characterId = users.Find(c => c.Login == login);
+                Authorization.IdUser = character.Id;               
             }
             else
             {

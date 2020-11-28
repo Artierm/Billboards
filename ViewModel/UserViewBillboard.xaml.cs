@@ -12,11 +12,11 @@ namespace BillboardsProject
         {
             InitializeComponent();
 
-            //List<Billboard> billsList = new List<Billboard>
-            //{
-            //    new Billboard {Id=1, Owner="Artyom Yermak", Address="Fedotova 5",  NameVideo = "Apple presentation"}
-            //};
-            //billsGrid.ItemsSource = billsList;
+            List<Billboard> billsList = new List<Billboard>
+            {
+                new Billboard {Id=1, Owner="Artyom Yermak", Address="Fedotova 5"}
+            };
+            billsGrid.ItemsSource = billsList;
         }
 
         public void Button_Click_Back(object sender, RoutedEventArgs e)

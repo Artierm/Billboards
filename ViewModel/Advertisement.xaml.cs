@@ -12,13 +12,13 @@ namespace BillboardsProject
         public Advertisement()
         {
             InitializeComponent();
-            //List<Video> advertisementList = new List<Video>
-            //{
-            //    new Video {NameVideo="Shedule1",  TimeVideo= 80},
-            //    new Video {NameVideo="Shedule2",  TimeVideo= 45},
-            //    new Video {NameVideo="Shedule3",  TimeVideo = 65}
-            //};
-            //advertisementGrid.ItemsSource = advertisementList;
+            List<Video> advertisementList = new List<Video>
+            {
+                new Video {NameVideo="Shedule1",  TimeVideo= 80},
+                new Video {NameVideo="Shedule2",  TimeVideo= 45},
+                new Video {NameVideo="Shedule3",  TimeVideo = 65}
+            };
+            advertisementGrid.ItemsSource = advertisementList;
         }
 
         public void Button_Click_Back(object sender, RoutedEventArgs e)
