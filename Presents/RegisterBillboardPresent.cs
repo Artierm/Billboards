@@ -21,6 +21,8 @@ namespace BillboardsProject.Presents
       
         public void RegisterBillboard(object sender, EventArgs e)
         {
+            //Просто в базу данных в Owner у билборда добавить логин.
+
             List<Billboard> billboards = database.Billboards.ToList();
             List<User> users = database.Users.ToList();
             Button btnSender = (Button)sender;

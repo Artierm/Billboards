@@ -36,7 +36,7 @@ namespace BillboardsProject
         public void Button_Click_Delete(object sender, RoutedEventArgs e)
         {
             DeleteUserEvent.Invoke(sender, e);
-            this.NavigationService.Navigate(new AdminRoom());
+            this.NavigationService.Navigate(new CrudUser());
         }
 
         public void Button_Click_AddUser(object sender, RoutedEventArgs e)

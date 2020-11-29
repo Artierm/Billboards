@@ -39,7 +39,7 @@ namespace BillboardsProject
         {
             addBillboardEvent.Invoke(sender, e, LoadAdvertisementNameVideo, LoadAdvertisementTimeVideo);
             // backEvent.Invoke(sender, e);
-            //this.NavigationService.Navigate(new Advertisement());
+            this.NavigationService.Navigate(new Advertisement());
         }
     }
 }
