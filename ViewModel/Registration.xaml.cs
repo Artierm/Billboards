@@ -9,7 +9,7 @@ namespace BillboardsProject
 {
     public partial class Registration : Page, ICreateBillboard
     {
-        public  delegate bool ValidationDelegate(object sender, EventArgs e, string login, string password, string passwordRepeat);
+        public  delegate bool ValidationDelegate(object sender, EventArgs e, string login, string password, string passwordRepeat, out bool admin);
         public  event EventHandler AutorizationEvent;
         public  event ValidationDelegate ValidationEvent;
         public ICreateBillboard iregistration;
@@ -36,11 +36,17 @@ namespace BillboardsProject
         {
             if (Validation())
             {
-                if (ValidationEvent.Invoke(sender, e, RegistrationLogin, RegistrationPassword, RegistrationPasswordRepeat))
+                if(ValidationEvent.Invoke(sender, e, RegistrationLogin, RegistrationPassword, RegistrationPasswordRepeat, out  bool admin))
                 {
-                    this.NavigationService.Navigate(new UserRoom());
+                    if (admin)
+                    {
+                        this.NavigationService.Navigate(new AdminRoom());
+                    }
+                    else
+                    {
+                        this.NavigationService.Navigate(new UserRoom());
+                    }
                 }
-
             }
        
         }
