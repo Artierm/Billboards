@@ -21,11 +21,15 @@ namespace BillboardsProject
     /// Логика взаимодействия для RegisterBillboard.xaml
     /// </summary>
     public partial class RegisterBillboard : Page
-    {
+    { 
+        //IRegistrationBillboard
+    
         public event RoutedEventHandler RegisterBillboardEvent;
         public event EventHandler BackEvent;
         private ApplicationContext database;
 
+       //public string IdRegistrationBillboard { get => ; set => id_billboard.Text = value.Trim(); }
+       // public string AuthorizationPassword { get => authorization_password.Password.Trim(); set => authorization_password.Password = value.Trim(); }
         public RegisterBillboard()
         {
             InitializeComponent();
@@ -38,29 +42,21 @@ namespace BillboardsProject
 
         public void Button_Click_Register_Billboard(object sender, RoutedEventArgs e)
         {
-            List<Billboard> users = database.Billboards.ToList();
-            var billboards = users.Where(c => c.Address == string.Empty);
-            try
-            {
-                DataRowView dataRowView = (DataRowView)((Button)e.OriginalSource).DataContext;
-                int idBillboard = Convert.ToInt32(dataRowView[1].ToString());
-                string address = dataRowView[3].ToString();
-                var billboardCheck = billboards.ToList().Find(c => c.Id == idBillboard);
-                var owner = database.Users.ToList().Find(c => c.Id == Authorization.IdUser);
-                billboardCheck.Owner = owner.Login;
-                database.SaveChanges();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-           // RegisterBillboardEvent.Invoke(sender, e);
+            RegisterBillboardEvent.Invoke(sender, e);
+            this.NavigationService.Navigate(new UserBillboards());
+            //string address = string.Empty;
+            //List<Billboard> billboards = database.Billboards.ToList();
+            //List<User> users = database.Users.ToList();
+            //Button btnSender = (Button)sender;
+            //var dataContextFromBtn = (Billboard)btnSender.DataContext;     
+            //MessageBox.Show(dataContextFromBtn.Address);
         }
+
+
         private void Button_Click_Back(object sender, RoutedEventArgs e)
         {
             //backEvent.Invoke(sender, e);
             this.NavigationService.Navigate(new UserBillboards());
-        }
+        }       
     }
 }

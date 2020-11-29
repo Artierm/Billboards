@@ -23,7 +23,7 @@
                         <DataGridTemplateColumn Header="Register">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="register" Click="Button_Click_Register_Billboard"></Button>
+                                    <Button Content="register"  Click="Button_Click_Register_Billboard"></Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

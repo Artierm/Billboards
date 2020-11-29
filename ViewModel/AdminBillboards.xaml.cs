@@ -15,14 +15,9 @@ namespace BillboardsProject
         public AdminBillboards()
         {
             InitializeComponent();
-            //{
-            //    new Billboard {Id = 1, Owner="Artyom Yermak", Address="Fedotova 5"},
-            //    new Billboard {Id = 2, Owner="Maks Stankevich", Address="Kurchatova 17" },
-            //    new Billboard {Id = 3, Owner="Sasha Bibikov", Address="Lenina 6"},
-            //    new Billboard {Id = 4 , Owner = string.Empty, Address=string.Empty}
-            //};
             database = new ApplicationContext();
             List<Billboard> billboards = database.Billboards.ToList();
+           // var newBillboards = billboards.Where(c => c.Owner != string.Empty);
             billsGrid.ItemsSource = billboards;
         }
 

@@ -46,7 +46,7 @@ namespace BillboardsProject.Presents
                     MessageBox.Show(errorMessage);
                 }
                 var characterId = users.Find(c => c.Login == login);
-                Authorization.IdUser = character.Id;               
+                //Authorization.IdUser = characterId.Id;               
             }
             else
             {

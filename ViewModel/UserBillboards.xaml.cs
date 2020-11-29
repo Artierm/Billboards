@@ -14,20 +14,12 @@ namespace BillboardsProject
         public UserBillboards()
         {
             InitializeComponent();
-            //List<Billboard> billsList = new List<Billboard>
-            //{
-            //    new Billboard {Id=1, Owner="Artyom Yermak", Address="Fedotova 5"},
-            //    new Billboard {Id=2, Owner="Maks Stankevich", Address="Kurchatova 17"},
-            //    new Billboard {Id=3, Owner="Sasha Bibikov", Address="Lenina 6"},
-            //    new Billboard {Id = 4 , Owner = string.Empty, Address=string.Empty}
-
-            //};
             database = new ApplicationContext();
             List<Billboard> billboards = database.Billboards.ToList();
+            //List<User> users = database.Users.ToList();
+            //var owner = users.Find(c => c.Id == Authorization.IdUser);
             var newBillboards = billboards.Where(c => c.Owner != string.Empty);
             billsGrid.ItemsSource = newBillboards;
-
-
         }
 
         private void Button_Click_View_Billboard(object sender, RoutedEventArgs e)

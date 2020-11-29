@@ -18,24 +18,21 @@ namespace BillboardsProject.Presents
             database = new ApplicationContext();
             this.registerBillboard.RegisterBillboardEvent += RegisterBillboard;
         }
-
-        public void RegisterBillboard(object sender, RoutedEventArgs e)
+      
+        public void RegisterBillboard(object sender, EventArgs e)
         {
-            List<Billboard> users = database.Billboards.ToList();
-            var billboards = users.Where(c => c.Address == string.Empty);
-            try
-            {
-                DataRowView dataRowView = (DataRowView)((Button)e.Source).DataContext;           
-                var billboardCheck = billboards.ToList().Find(c => c.Id == Convert.ToInt32(dataRowView[1].ToString()));
-                var owner = database.Users.ToList().Find(c => c.Id == Authorization.IdUser);
-                billboardCheck.Owner = owner.Login;
-                database.SaveChanges();
+            List<Billboard> billboards = database.Billboards.ToList();
+            List<User> users = database.Users.ToList();
+            Button btnSender = (Button)sender;
+            var dataContextFromBtn = (Billboard)btnSender.DataContext;
+            var billboard = billboards.Find(c => c.Id == dataContextFromBtn.Id);
+            database.Billboards.Remove(billboard);
+            var address = dataContextFromBtn.Address;
+            var owner = users.Find(c => c.Id == Authorization.IdUser);
+            Billboard billboard1 = new Billboard(owner.Login, address);
+            database.Add(billboard1);
+            database.SaveChanges();
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
         }
     }
 }
