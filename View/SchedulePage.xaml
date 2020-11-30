@@ -1,0 +1,51 @@
+﻿<Page x:Class="BillboardsProject.SchedulePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BillboardsProject"
+      mc:Ignorable="d" 
+      Title="Page9">
+    <Grid Background="#ffdada">
+        <Border MinWidth="400" Margin="15" Background="White" VerticalAlignment="Center" Padding="40" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Text="Schedule" FontSize="30" FontWeight="Bold" Margin="0 0 0 20"/>
+                <Grid>
+                    <Button HorizontalAlignment="Right" Content="Back" Click="Button_Click_Back"  Style="{StaticResource MaterialDesignFlatButton}"/>
+                </Grid>
+                <DataGrid x:Name="shedulesGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Path= Name}" Width="auto" />
+                        <DataGridTextColumn Header="Id billboards"  Binding="{Binding Path= IdBillboards}" Width="auto" />
+                        <DataGridTextColumn Header="Amount of videos" Binding="{Binding Path= AmountOfBillboards}" Width="auto" />
+                        <DataGridTemplateColumn Header="Download">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Download"></Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Delete">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Delete"></Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Set">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Set"></Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Content = "Create Shedule" Margin="0 20" Width="250"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

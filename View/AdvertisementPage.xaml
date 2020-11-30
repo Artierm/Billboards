@@ -1,0 +1,36 @@
+﻿<Page x:Class="BillboardsProject.AdvertisementPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BillboardsProject"
+      mc:Ignorable="d" 
+      Title="Page10">
+    <Grid Background="#ffdada">
+        <Border MinWidth="400" Margin="15" Background="White" VerticalAlignment="Center" Padding="40" MaxWidth="800" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Text="Advertisement" FontSize="30" FontWeight="Bold" Margin="0 0 0 20"/>
+                <Grid>
+                    <Button HorizontalAlignment="Right" Content="Back" Click="Button_Click_Back"  Style="{StaticResource MaterialDesignFlatButton}"/>
+                </Grid>
+                <DataGrid x:Name="advertisementGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserReorderColumns="True" CanUserSortColumns="True" ItemsSource="{DynamicResource ResourceKey=bills}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name Video" Binding="{Binding Path=NameOfVideo}" Width="auto" />
+                        <DataGridTextColumn Header="Video Time"  Binding="{Binding Path=TimeOfVideo}" Width="auto" />
+                        <DataGridTemplateColumn Header="Delete">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Delete"></Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Content = "Load Video"  Click ="Button_LoadVideo" Margin="0 20" Width="150"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

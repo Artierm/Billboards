@@ -15,7 +15,7 @@ namespace BillboardsProject
 
         public void MyWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            frame.NavigationService.Navigate(new Authorization());
+            frame.NavigationService.Navigate(new AuthorizationPage());
         }
 
     }

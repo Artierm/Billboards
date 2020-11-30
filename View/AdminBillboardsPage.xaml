@@ -1,0 +1,37 @@
+﻿<Page x:Class="BillboardsProject.AdminBillboardsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BillboardsProject" xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+      mc:Ignorable="d" 
+      Title="Page5">
+    <Grid Background="#ffdada">
+        <Border MinWidth="400" Margin="15" Background="White" VerticalAlignment="Center" Padding="40" MaxWidth="800" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Text="Billboards" FontSize="30" FontWeight="Bold" Margin="0 0 0 20"/>
+                <Grid>
+                    <Button HorizontalAlignment="Right" Content="Back" Click="Button_Click_Back" Style="{StaticResource MaterialDesignFlatButton}"/>
+                </Grid>
+                <DataGrid x:Name="billsGrid"  AutoGenerateColumns="False" CanUserAddRows="False" CanUserReorderColumns="True" CanUserSortColumns="True" ItemsSource="{DynamicResource ResourceKey=bills}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="id_billboard" Header="Id" Binding="{Binding Path=Id}" Width="auto" />
+                        <DataGridTextColumn x:Name="owner_billboard" Header="Owner"  Binding="{Binding Path=Owner}" Width="auto" />
+                        <DataGridTextColumn x:Name="address_billboard" Header="Address" Binding="{Binding Path=Address}" Width="auto" />
+                        <DataGridTemplateColumn Header="View">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="View" Click="Button_Click_ViewBillboard"></Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Content = "Create new billboard" Click="Button_Click_CreateNewBillboard" Margin="0 20"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

@@ -1,0 +1,27 @@
+﻿<Page x:Class="BillboardsProject.CreateNewUserPage"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+xmlns:local="clr-namespace:BillboardsProject"
+mc:Ignorable="d"
+xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+Title="Billboards" >
+    <Grid Background="#ffdada">
+        <Border MinWidth="400" Margin="15" Background="White" VerticalAlignment="Center" Padding="40" MaxWidth="550" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Text="Creating new user" FontSize="30" FontWeight="Bold" Margin="0 0 0 20"/>
+                <Grid>
+                    <Button HorizontalAlignment="Right" Content="Back" Click="Button_Click_Back"  Style="{StaticResource MaterialDesignFlatButton}"/>
+                </Grid>
+                <TextBox x:Name="user_login" materialDesign:HintAssist.Hint="Enter user login" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <PasswordBox x:Name="user_password" materialDesign:HintAssist.Hint="Enter user password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <PasswordBox x:Name="user_password_repeat" materialDesign:HintAssist.Hint="Enter user password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <Button Content = "Add user"  Width=" 150" Click="Button_Click_AddUser"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>
