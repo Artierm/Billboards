@@ -18,9 +18,9 @@
                 </Grid>
                 <DataGrid x:Name="billsGrid"  AutoGenerateColumns="False" CanUserAddRows="False" CanUserReorderColumns="False"  CanUserResizeRows="False" CanUserDeleteRows="False"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" Width="auto" />
-                        <DataGridTextColumn Header="Owner"  Binding="{Binding Path=Owner}" Width="auto" />
-                        <DataGridTextColumn Header="Address" Binding="{Binding Path=Address}" Width="auto" />
+                        <DataGridTextColumn x:Name="id_billboard" Header="Id" Binding="{Binding Path=Id}" Width="auto" />
+                        <DataGridTextColumn x:Name="owner_billboard"  Header="Owner"  Binding="{Binding Path=Owner}" Width="auto" />
+                        <DataGridTextColumn x:Name="address_billboard" Header="Address" Binding="{Binding Path=Address}" Width="auto" />
                         <DataGridTextColumn Header="Now playing"   Binding="{Binding Path=NameVideo}" Width="auto" />
                         <DataGridTemplateColumn Header="Download">
                             <DataGridTemplateColumn.CellTemplate>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BillboardsProject.Presents;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -9,6 +10,8 @@ namespace BillboardsProject
     public partial class UserBillboards : Page
     {
         public event EventHandler billboardEvent;
+        public delegate void ViewBillboardDelegate(object sender, EventArgs e, out int id, out string address, out string owner);
+        public event ViewBillboardDelegate ViewBillboardEvent;
         public event EventHandler backEvent;
         private ApplicationContext database;
         public UserBillboards()
@@ -20,10 +23,15 @@ namespace BillboardsProject
             //var owner = users.Find(c => c.Id == Authorization.IdUser);
             var newBillboards = billboards.Where(c => c.Owner != string.Empty);
             billsGrid.ItemsSource = newBillboards;
+            UserBillboardsPresent userViewBillboardPresent = new UserBillboardsPresent(this);
         }
 
         private void Button_Click_View_Billboard(object sender, RoutedEventArgs e)
         {
+            ViewBillboardEvent.Invoke(sender, e, out int id, out string address, out string owner);
+            UserViewBillboard.AddressBillboard = address;
+            UserViewBillboard.IdBillboard = id;
+            UserViewBillboard.OwnerBillboard = owner;
             //billboardEvent.Invoke(sender, e);
             this.NavigationService.Navigate(new UserViewBillboard());
         }
