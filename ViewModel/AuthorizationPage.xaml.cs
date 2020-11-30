@@ -13,7 +13,7 @@ namespace BillboardsProject
         public static int UserId { get; set; }
 
         private ICreateBillboard registrationView;
-
+       // private IAuthorizationService _authorizationService;// подсказад Шпак
         public delegate bool AuthorizationHandler(object sender, EventArgs e, string login, string password, out bool admin, out int idUser);
 
         public event AuthorizationHandler UserEvent;
@@ -26,10 +26,16 @@ namespace BillboardsProject
         {
             InitializeComponent();
             AuthorizationPresenter authorizationPresenter = new AuthorizationPresenter(this);
+            //_authorizationService = new AuthorizationService();// подсказал Шпак
         }
 
         public void Button_Click_Log_In(object sender, RoutedEventArgs e)
         {
+            //if(_authorizationService.UserEvent(AuthorizationLogin, AuthorizationPassword, out bool admin, out int userId))
+            //{
+
+            //}
+
             if(UserEvent.Invoke(sender, e, AuthorizationLogin, AuthorizationPassword, out bool admin, out int userId))
             {
                 if (admin)

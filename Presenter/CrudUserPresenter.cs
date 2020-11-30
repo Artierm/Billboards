@@ -26,14 +26,16 @@ namespace BillboardsProject.Presents
             var dataContextFromBtn = (User)btnSender.DataContext;
             var user = users.Find(c => c.Id == dataContextFromBtn.Id);
             var removeBillboards = billboards.Where(c => c.Owner == dataContextFromBtn.Login);
-
+        
             //replace remove+add to sql
 
             foreach(var billboard in removeBillboards)
             {
-                Billboard billboard1 = new Billboard(string.Empty, billboard.Address);
-                database.Billboards.Add(billboard1);
-                database.Remove(billboard);
+                billboard.Owner = string.Empty;
+                //Billboard billboard1 = new Billboard(string.Empty, billboard.Address);
+ 
+                //database.Billboards.Add(billboard1);
+                //database.Remove(billboard);
               
             }
             database.Remove(user);
