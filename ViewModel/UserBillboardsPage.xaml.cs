@@ -9,23 +9,21 @@ namespace BillboardsProject
 {
     public partial class UserBillboardsPage : Page
     {
-        public delegate void ViewBillboardDelegate(object sender, EventArgs e, out int id, out string address, out string owner);
-        public event ViewBillboardDelegate ViewBillboardEvent;
-        private DatabaseContext database;
-
+        private DatabaseContext _database;
+        private UserBillboardsPresenter _userViewBillboardPresenter;
         public UserBillboardsPage()
         {
             InitializeComponent();
-            database = new DatabaseContext();
-            List<Billboard> billboards = database.Billboards.ToList();
+            _database = new DatabaseContext();
+            List<Billboard> billboards = _database.Billboards.ToList();
             var newBillboards = billboards.Where(c => c.Owner != string.Empty);
             billsGrid.ItemsSource = newBillboards;
-            UserBillboardsPresenter userViewBillboardPresent = new UserBillboardsPresenter(this);
+            _userViewBillboardPresenter = new UserBillboardsPresenter();
         }
 
         private void Button_Click_View_Billboard(object sender, RoutedEventArgs e)
         {
-            ViewBillboardEvent.Invoke(sender, e, out int id, out string address, out string owner);
+            _userViewBillboardPresenter.ViewBillboard(sender, out int id, out string address, out string owner);
             UserViewBillboardPage.BillboardAddress = address;
             UserViewBillboardPage.BillboardId = id;
             UserViewBillboardPage.BillboardOwner = owner;

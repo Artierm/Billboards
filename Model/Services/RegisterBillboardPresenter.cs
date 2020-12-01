@@ -10,25 +10,22 @@ namespace BillboardsProject.Presents
 {
     class RegisterBillboardPresenter
     {
-        public RegisterBillboardPage registerBillboard;
-        DatabaseContext database;
-        public RegisterBillboardPresenter(RegisterBillboardPage registerBillboard)
+        private DatabaseContext _database;
+        public RegisterBillboardPresenter()
         {
-            this.registerBillboard = registerBillboard;
-            database = new DatabaseContext();
-            this.registerBillboard.RegisterBillboardEvent += RegisterBillboard;
+            _database = new DatabaseContext();
         }
       
-        public void RegisterBillboard(object sender, EventArgs e)
+        public void RegisterBillboard(object sender)
         {
-            List<Billboard> billboards = database.Billboards.ToList();
-            List<User> users = database.Users.ToList();
+            List<Billboard> billboards = _database.Billboards.ToList();
+            List<User> users = _database.Users.ToList();
             Button btnSender = (Button)sender;
             var dataContextFromBtn = (Billboard)btnSender.DataContext;
             var billboard = billboards.Find(c => c.Id == dataContextFromBtn.Id);
             var owner = users.Find(c => c.Id == AuthorizationPage.UserId);
             billboard.Owner = owner.Login;
-            database.SaveChanges();
+            _database.SaveChanges();
 
         }
     }

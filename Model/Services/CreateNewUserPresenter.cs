@@ -9,18 +9,15 @@ namespace BillboardsProject.Presents
 {
     class CreateNewUserPresenter
     {
-        public CreateNewUserPage createNewUser;
-        DatabaseContext database;
-        public CreateNewUserPresenter(CreateNewUserPage createNewUser)
+        private DatabaseContext _database;
+        public CreateNewUserPresenter()
         {
-            this.createNewUser = createNewUser;
-            database = new DatabaseContext();
-            this.createNewUser.AddNewUserEvent += CreateUser;
+            _database = new DatabaseContext();
         }
 
-        public void CreateUser(object sender, EventArgs e, string login, string password, string repeatPassword)
+        public void CreateUser(string login, string password, string repeatPassword)
         {
-            List<User> users = database.Users.ToList();
+            List<User> users = _database.Users.ToList();
             var newUser = users.Find(c => c.Login == login);
             if(newUser is null)
             {
@@ -29,8 +26,8 @@ namespace BillboardsProject.Presents
                     var salt = RegistrationModel.CreateSalt(10);
                     var hashPassword = RegistrationModel.GenerateSHAHash256(password, salt);
                     User user = new User(login, hashPassword, salt);
-                    database.Users.Add(user);
-                    database.SaveChanges();
+                    _database.Users.Add(user);
+                    _database.SaveChanges();
                 }
                 else
                 {

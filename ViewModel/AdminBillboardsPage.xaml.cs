@@ -9,22 +9,21 @@ namespace BillboardsProject
 {
     public partial class AdminBillboardsPage : Page
     {
-
-        public delegate void ViewBillboardDelegate(object sender, EventArgs e, out int id, out string address, out string owner);
-        public event ViewBillboardDelegate ViewBillboardEvent;
         private DatabaseContext database;
+        private AdminBillboardsPresenter _adminBillboardsPresenter;
         public AdminBillboardsPage()
         {
             InitializeComponent();
+            _adminBillboardsPresenter = new AdminBillboardsPresenter();
             database = new DatabaseContext();
             List<Billboard> billboards = database.Billboards.ToList();
             billsGrid.ItemsSource = billboards;
-            AdminBillboardsPresenter userViewBillboardPresenter = new AdminBillboardsPresenter(this);
+    
         }
 
         private void Button_Click_ViewBillboard(object sender, RoutedEventArgs e)
         {
-            ViewBillboardEvent.Invoke(sender, e, out int id, out string address, out string owner);
+            _adminBillboardsPresenter.ViewBillboard(sender, out int id, out string address, out string owner);
             UserViewBillboardPage.BillboardAddress = address;
             UserViewBillboardPage.BillboardId = id;
             UserViewBillboardPage.BillboardOwner = owner;

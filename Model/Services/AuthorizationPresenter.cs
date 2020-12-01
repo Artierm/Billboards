@@ -6,32 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Windows.Navigation;
 
-namespace BillboardsProject.Presents
+namespace BillboardsProject.Presenter
 {
     class AuthorizationPresenter
     {
-        public IAuthorization authorizationView;
-        public ICreateBillboard registrationView;
-        AuthorizationPage authorization;
-        DatabaseContext Db;
-        public AuthorizationPresenter(AuthorizationPage authorization)
-        {
-            this.authorization = authorization;
-            Db = new DatabaseContext();
 
-            this.authorization.RegistrationEvent += Registration;
-            this.authorization.UserEvent += CheckUser;
+        private DatabaseContext _database;
+        public AuthorizationPresenter()
+        {
+            _database = new DatabaseContext();
         }
 
-        public void Registration(object sender, EventArgs e)
-        {
-           this.authorization.NavigationService.Navigate(new RegistrationPage(registrationView));
-        }
-
-        public bool CheckUser(object sender, EventArgs e, string login, string password, out bool isAdmin, out int userId)
+        public bool CheckUser(string login, string password, out bool isAdmin, out int userId)
         {
             isAdmin = false;
-            List<User> users = Db.Users.ToList();
+            List<User> users = _database.Users.ToList();
             var checkedUser = users.Find(c => c.Login == login);
 
             userId = 0;

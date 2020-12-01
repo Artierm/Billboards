@@ -17,10 +17,7 @@ namespace BillboardsProject
 {
     public partial class CreateNewUserPage : Page, ICreateUsers
     {
-        private ICreateUsers icreateUsers;
-        public delegate void AddNewUserDelegate(object sender, EventArgs e, string login, string password, string passordRepeat);
-        public event AddNewUserDelegate AddNewUserEvent;
-        
+        private CreateNewUserPresenter _createNewUserPresenter;
         public string UserLogin { get => user_login.Text.Trim(); set => user_login.Text = value.Trim(); }
         public string UserPassword { get => user_password.Password.Trim(); set => user_password.Password = value.Trim(); }
 
@@ -28,12 +25,12 @@ namespace BillboardsProject
         public CreateNewUserPage()
         {          
             InitializeComponent();
-            CreateNewUserPresenter createNewUserPresenter = new CreateNewUserPresenter(this);
+            _createNewUserPresenter = new CreateNewUserPresenter();
         }
 
         public void Button_Click_AddUser(object sender, RoutedEventArgs e)
         {
-            AddNewUserEvent.Invoke(sender, e, UserLogin, UserPassword, UserPasswordRepeat);
+             _createNewUserPresenter.CreateUser(UserLogin, UserPassword, UserPasswordRepeat);
             this.NavigationService.Navigate(new CrudUserPage());
         }
 

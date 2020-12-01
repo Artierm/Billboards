@@ -7,17 +7,13 @@ namespace BillboardsProject.Presents
 {
     class UserBillboardsPresenter
     {
-
-        public UserBillboardsPage userBillboards;
-        DatabaseContext database;
-        public UserBillboardsPresenter(UserBillboardsPage userBillboards)
+        private DatabaseContext _database;
+        public UserBillboardsPresenter()
         {
-            this.userBillboards = userBillboards;
-            database = new DatabaseContext();
-            this.userBillboards.ViewBillboardEvent += ViewBillboard;
+            _database = new DatabaseContext();
         }
 
-        public void ViewBillboard(object sender, EventArgs e, out int id, out string address, out string owner)
+        public void ViewBillboard(object sender, out int id, out string address, out string owner)
         {
             Button btnSender = (Button)sender;
             var dataContextFromButton = (Billboard)btnSender.DataContext;

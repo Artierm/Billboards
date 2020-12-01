@@ -10,17 +10,15 @@ namespace BillboardsProject
 {
     public partial class CrudUserPage : Page
     {
-
-        public event EventHandler DeleteUserEvent;
-        private DatabaseContext database;
-
+        private DatabaseContext _database;
+        private CrudUserPresenter _crudUserPresenter;
         public CrudUserPage()
         {
             InitializeComponent();
-            database = new DatabaseContext();
+            _database = new DatabaseContext();
 
-            CrudUserPresenter crudUserPresenter = new CrudUserPresenter(this);
-            List<User> users = database.Users.ToList();
+            _crudUserPresenter = new CrudUserPresenter();
+            List<User> users = _database.Users.ToList();
             var realUsers = users.Where(c => c.Id != 1);
             usersGrid.ItemsSource = realUsers;
         }
@@ -32,7 +30,7 @@ namespace BillboardsProject
 
         public void Button_Click_Delete(object sender, RoutedEventArgs e)
         {
-            DeleteUserEvent.Invoke(sender, e);
+            _crudUserPresenter.RemoveUser(sender);
             this.NavigationService.Navigate(new CrudUserPage());
         }
 

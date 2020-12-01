@@ -9,20 +9,15 @@ namespace BillboardsProject
 {
     public partial class RegistrationPage : Page, ICreateBillboard
     {
-        public  delegate bool ValidationDelegate(object sender, EventArgs e, string login, string password, string passwordRepeat, out bool admin);
-        public  event EventHandler AutorizationEvent;
-        public  event ValidationDelegate ValidationEvent;
-        public ICreateBillboard iregistration;
-
+        private RegistrationPresenter _registrationPresenter;
         public string RegistrationLogin { get => textBoxLogin.Text.Trim(); set => textBoxLogin.Text = value.Trim(); }
         public string RegistrationPassword { get => pass_box.Password.Trim(); set => pass_box.Password = value.Trim(); }
         public string RegistrationPasswordRepeat { get => pass_box2.Password.Trim(); set => pass_box2.Password = value.Trim(); }
 
-        public RegistrationPage(ICreateBillboard ireg)
+        public RegistrationPage()
         {
-            this.iregistration = ireg;
             InitializeComponent();
-            RegistrationPresenter registrationPresenter = new RegistrationPresenter(this,this.iregistration);
+            _registrationPresenter = new RegistrationPresenter();
         }
 
         public   void Button_Click_Authorization(object sender, RoutedEventArgs e)
@@ -34,7 +29,7 @@ namespace BillboardsProject
         {
             if (Validation())
             {
-                if(ValidationEvent.Invoke(sender, e, RegistrationLogin, RegistrationPassword, RegistrationPasswordRepeat, out  bool admin))
+                if(_registrationPresenter.AddNewUser(RegistrationLogin, RegistrationPassword, RegistrationPasswordRepeat, out  bool admin))
                 {
                     if (admin)
                     {

@@ -19,23 +19,22 @@ namespace BillboardsProject
 {
     public partial class RegisterBillboardPage : Page
     { 
-        public event RoutedEventHandler RegisterBillboardEvent;
-        private DatabaseContext database;
+        private DatabaseContext _database;
+        private RegisterBillboardPresenter _registerBillboardPresenter;
 
         public RegisterBillboardPage()
         {
             InitializeComponent();
-            database = new DatabaseContext();
-
-            List<Billboard> billboards = database.Billboards.ToList();
+            _database = new DatabaseContext();
+            _registerBillboardPresenter = new RegisterBillboardPresenter();
+            List<Billboard> billboards = _database.Billboards.ToList();
             var newBillboards = billboards.Where(c => c.Owner == string.Empty);
             billsGrid.ItemsSource = newBillboards;
-            RegisterBillboardPresenter registerBillboardPresenter = new RegisterBillboardPresenter(this);
         }
 
         public void Button_Click_Register_Billboard(object sender, RoutedEventArgs e)
         {
-            RegisterBillboardEvent.Invoke(sender, e);
+            _registerBillboardPresenter.RegisterBillboard(sender);
             this.NavigationService.Navigate(new UserBillboardsPage());
         }
 
