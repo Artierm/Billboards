@@ -44,7 +44,7 @@
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button Content = "Create Shedule" Margin="0 20" Width="250"/>
+                <Button Content = "Create Shedule" Click="Button_Click_CreateSchedule" Margin="0 20" Width="250"/>
             </StackPanel>
         </Border>
     </Grid>

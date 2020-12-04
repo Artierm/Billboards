@@ -1,6 +1,6 @@
 ﻿namespace BillboardsProject
 {
-    class Video
+    public class Video
     {
         public int Id { get; set; }
         public string NameOfVideo { get; set; }

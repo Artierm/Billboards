@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BillboardsProject.View;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +23,11 @@ namespace BillboardsProject
         public void Button_Click_Back(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new UserRoomPage());
+        }
+
+        public void Button_Click_CreateSchedule(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new CreateSchedulePage());
         }
 
     }
