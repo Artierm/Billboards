@@ -1,17 +1,16 @@
-﻿using Billbort.Presenter;
+﻿using BillboardProject.Presenter;
 using DAL.Models;
 using DAL.Repositories.Implementations;
-using DAL.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Billbort
+namespace BillboardProject
 {
     public partial class AdminViewBillboardPage : Page
     {
-        private AdminViewBillboardService _adminViewBillboardService;
+        private readonly AdminViewBillboardService _adminViewBillboardService;
         public AdminViewBillboardPage()
         {
             InitializeComponent();

@@ -1,17 +1,17 @@
 ﻿using BillboardsProject.Model.Interfaces;
-using Billbort.Presenter;
-using Billbort.ViewModel;
+using BillboardProject.Presenter;
+using BillboardProject.ViewModel;
 using DAL.Repositories.Implementations;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 
-namespace Billbort
+namespace BillboardProject
 {
     public partial class AuthorizationPage : Page, IAuthorization, ITime
     {
-        private AuthorizationService _authorizationService;
+        private readonly AuthorizationService _authorizationService;
         public string Time { get => time.Text; set => time.Text = value.ToString(); }
         public static int UserId { get; set; }
 
@@ -52,8 +52,10 @@ namespace Billbort
 
         public void StartClock()
         {
-            DispatcherTimer dispstcherTimer = new DispatcherTimer();
-            dispstcherTimer.Interval = TimeSpan.FromSeconds(1);
+            DispatcherTimer dispstcherTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1)
+            };
             dispstcherTimer.Tick += TickEvent;
             dispstcherTimer.Start();
         }

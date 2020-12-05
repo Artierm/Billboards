@@ -1,4 +1,4 @@
-﻿using Billbort.Presents;
+﻿using BillboardProject.Presents;
 using DAL.Models;
 using DAL.Repositories.Implementations;
 using System.Collections.Generic;
@@ -6,11 +6,11 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Billbort
+namespace BillboardProject
 {
     public partial class UserViewBillboardPage : Page
     {
-        private UserViewBillboardService _userViewBillboardService;
+        private readonly UserViewBillboardService _userViewBillboardService;
         public static int BillboardId { get; set; }
         public static string BillboardOwner { get; set; }
         public static string BillboardAddress { get; set; }
@@ -24,7 +24,7 @@ namespace Billbort
             string address = UserViewBillboardPage.BillboardAddress;
             var billboards = createNewBillboardRepository.GetAll();
             var billboard = billboards.FirstOrDefault(c => c.Address == address);
-            List<Billboard> billsList = new List<Billboard>();
+            List<DAL.Models.Billboard> billsList = new List<DAL.Models.Billboard>();
 
             billsList.Add(billboard);
             billsGrid.ItemsSource = billsList;

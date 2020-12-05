@@ -3,7 +3,7 @@ using DAL.Repositories.Interfaces;
 using System.Linq;
 using System.Windows.Controls;
 
-namespace Billbort.Presenter
+namespace BillboardProject.Presenter
 {
     public class AdvertisementService
     {

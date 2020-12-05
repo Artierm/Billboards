@@ -1,11 +1,11 @@
-﻿using Billbort.Models;
+﻿using BillboardProject.Models;
 using DAL.Models;
 using DAL.Repositories.Interfaces;
 using System;
 using System.Linq;
 using System.Windows;
 
-namespace Billbort.Presents
+namespace BillboardProject.Presents
 {
     public class RegistrationService
     {

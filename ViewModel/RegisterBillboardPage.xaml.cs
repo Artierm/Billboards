@@ -1,22 +1,21 @@
-﻿using Billbort.Presents;
+﻿using BillboardProject.Presents;
 using DAL.Repositories.Implementations;
-using System.Data;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Billbort
+namespace BillboardProject
 {
     public partial class RegisterBillboardPage : Page
     { 
-        private RegisterBillboardService _registerBillboardService;
+        private readonly RegisterBillboardService _registerBillboardService;
 
         public RegisterBillboardPage()
         {
             InitializeComponent();
             var createNewBillboardRepository = new CreateNewBillboardRepository();
 
-            _registerBillboardService = new RegisterBillboardService(createNewBillboardRepository, new CreateNewUserRepository()); ;
+            _registerBillboardService = new RegisterBillboardService(createNewBillboardRepository, new CreateNewUserRepository());
             var billboards = createNewBillboardRepository.GetAll();
             var newBillboards = billboards.Where(c => c.Owner == string.Empty);
             billsGrid.ItemsSource = newBillboards;

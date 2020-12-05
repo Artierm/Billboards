@@ -1,8 +1,8 @@
-﻿using Billbort.Models;
+﻿using BillboardProject.Models;
 using DAL.Repositories.Interfaces;
 using System.Linq;
 
-namespace Billbort.Presenter
+namespace BillboardProject.Presenter
 {
     public class AuthorizationService
     {

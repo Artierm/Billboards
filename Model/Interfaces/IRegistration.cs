@@ -1,4 +1,4 @@
-﻿namespace Billbort.ViewModel
+﻿namespace BillboardProject.ViewModel
 {
     public interface IRegistration
     {

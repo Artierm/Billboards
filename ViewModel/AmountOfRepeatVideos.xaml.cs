@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Billbort.View
+namespace BillboardProject.View
 {
-    /// <summary>
-    /// Interaction logic for AmountOfRepeatVideos.xaml
-    /// </summary>
     public partial class AmountOfRepeatVideos : Page
     {
        private List<Video> Videos { get; set; }

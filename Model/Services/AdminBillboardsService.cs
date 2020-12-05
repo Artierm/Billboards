@@ -2,7 +2,7 @@
 using DAL.Repositories.Interfaces;
 using System.Windows.Controls;
 
-namespace Billbort.Presents
+namespace BillboardProject.Presents
 {
     public class AdminBillboardsService
     {
@@ -16,7 +16,7 @@ namespace Billbort.Presents
         {
 
             Button btnSender = (Button)sender;
-            var dataContextFromButton = (Billboard)btnSender.DataContext;
+            var dataContextFromButton = (DAL.Models.Billboard)btnSender.DataContext;
 
             address = dataContextFromButton.Address;
             id = dataContextFromButton.Id;

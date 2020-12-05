@@ -1,14 +1,14 @@
-﻿using Billbort.Presents;
-using Billbort.ViewModel;
+﻿using BillboardProject.Presents;
+using BillboardProject.ViewModel;
 using DAL.Repositories.Implementations;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Billbort
+namespace BillboardProject
 {
     public partial class CreateNewUserPage : Page, ICreateUsers
     {
-        private CreateNewUserService _createNewUserService;
+        private readonly CreateNewUserService _createNewUserService;
         public string UserLogin { get => user_login.Text.Trim(); set => user_login.Text = value.Trim(); }
         public string UserPassword { get => user_password.Password.Trim(); set => user_password.Password = value.Trim(); }
 

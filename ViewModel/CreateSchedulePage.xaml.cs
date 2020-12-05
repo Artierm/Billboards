@@ -6,7 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Billbort.View
+namespace BillboardProject.View
 {
     public partial class CreateSchedulePage : Page
     {
@@ -18,11 +18,22 @@ namespace Billbort.View
             DynamicCheckBox();         
         }
 
+        public void Button_Click_Save_and_Continue(object sender, RoutedEventArgs e)
+        {
+           var videos =  CheckVideos();
+            this.NavigationService.Navigate(new AmountOfRepeatVideos(videos));
+        }
+
+        public void Button_Click_Back(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new SchedulePage());
+        }
+
         private void DynamicCheckBox()
         {
             var itemList = database.Videos.ToList();
             var itemCorrectList = itemList.Where(c => c.OwnerId == AuthorizationPage.UserId);
-            foreach(var item in itemCorrectList)
+            foreach (var item in itemCorrectList)
             {
                 CheckBox checkBox = new CheckBox();
                 checkBox.Name = "video_checkbox";
@@ -36,18 +47,6 @@ namespace Billbort.View
             scheduleCheckbox.Children.Add(button);
         }
 
-        public void Button_Click_Save_and_Continue(object sender, RoutedEventArgs e)
-        {
-           var videos =  CheckVideos();
-            this.NavigationService.Navigate(new AmountOfRepeatVideos(videos));
-        }
-
-        public void Button_Click_Back(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new SchedulePage());
-        }
-        
-
         //занести в сервис
         private List<Video> CheckVideos()
         {
@@ -58,9 +57,9 @@ namespace Billbort.View
 
             foreach (Object item in scheduleCheckbox.Children)
             {
-                if (item is CheckBox)
+                if (item is CheckBox box)
                 {
-                    checkBoxes.Add((CheckBox)item);
+                    checkBoxes.Add(box);
                 }
             }
 

@@ -1,11 +1,11 @@
 ﻿using DAL.Context;
 
-namespace Billbort.Model.Services
+namespace BillboardProject.Model.Services
 {
     public class CountVideosRepeatService
     {
-        private DatabaseContext _database;
-        CountVideosRepeatService()
+        private readonly DatabaseContext _database;
+       public CountVideosRepeatService()
         {
             _database = new DatabaseContext();
         }

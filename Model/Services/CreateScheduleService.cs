@@ -2,7 +2,7 @@
 using DAL.Repositories.Interfaces;
 using System.Windows.Controls;
 
-namespace Billbort
+namespace BillboardProject
 {
     public class CreateScheduleService
     {
@@ -15,8 +15,6 @@ namespace Billbort
 
         public void CreateSchedule(object sender)
         {
-
-            var videos = _createNewVideoRepository.GetAll();
             Button btnSender = (Button)sender;
             var dataContextFromBtn = (Video)btnSender.DataContext;
             var video = _createNewVideoRepository.GetByName(dataContextFromBtn.NameOfVideo);

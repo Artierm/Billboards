@@ -1,15 +1,15 @@
-﻿using Billbort.Presents;
-using Billbort.ViewModel;
+﻿using BillboardProject.Presents;
+using BillboardProject.ViewModel;
 using DAL.Repositories.Implementations;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Billbort
+namespace BillboardProject
 {
     public partial class LoadAdvertisementPage : Page, ILoadAdvertisement
     {
-        private LoadAdvertisementService _loadAdvertisementService;
+        private readonly LoadAdvertisementService _loadAdvertisementService;
         public string LoadAdvertisementNameVideo { get => name_video.Text.Trim(); set => name_video.Text = value.Trim(); }
         public int LoadAdvertisementTimeVideo { get => Convert.ToInt32(time_video.Text.Trim()); set => time_video.Text = value.ToString().Trim(); }
         public LoadAdvertisementPage()

@@ -3,7 +3,7 @@ using DAL.Repositories.Interfaces;
 using System.Linq;
 using System.Windows.Controls;
 
-namespace Billbort.Presenter
+namespace BillboardProject.Presenter
 {
     public class AdminViewBillboardService
     {
@@ -18,8 +18,8 @@ namespace Billbort.Presenter
             var billboards = _createNewBillboardRepository.GetAll();
           
             Button btnSender = (Button)sender;
-            var dataContextFromBtn = (Billboard)btnSender.DataContext;
-            Billboard billboard = billboards.FirstOrDefault(c => c.Address == dataContextFromBtn.Address);
+            var dataContextFromBtn = (DAL.Models.Billboard)btnSender.DataContext;
+            DAL.Models.Billboard billboard = billboards.FirstOrDefault(c => c.Address == dataContextFromBtn.Address);
 
             _createNewBillboardRepository.Delete(billboard);
         }

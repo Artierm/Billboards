@@ -1,14 +1,14 @@
-﻿using Billbort.Presents;
-using Billbort.ViewModel;
+﻿using BillboardProject.Presents;
+using BillboardProject.ViewModel;
 using DAL.Repositories.Implementations;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Billbort
+namespace BillboardProject
 {
     public partial class CreateNewBillboardPage : Page, IRegistration
     {
-        private CreateNewBillboardService _createNewBillboardService;
+        private readonly CreateNewBillboardService _createNewBillboardService;
 
         public string BillboardCreateAddress { get => billboard_address.Text.Trim(); set => billboard_address.Text = value.Trim(); }
         public CreateNewBillboardPage()

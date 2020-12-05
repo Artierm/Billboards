@@ -1,9 +1,10 @@
 ﻿using System;
 
-namespace Billbort.Models
+namespace BillboardProject.Models
 {
     public class PasswordService
     {
+        protected PasswordService() { }
         public static string CreateSalt(int size)
         {
             var rng = new System.Security.Cryptography.RNGCryptoServiceProvider();

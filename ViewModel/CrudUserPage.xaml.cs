@@ -1,14 +1,14 @@
-﻿using Billbort.Presents;
+﻿using BillboardProject.Presents;
 using DAL.Repositories.Implementations;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Billbort
+namespace BillboardProject
 {
     public partial class CrudUserPage : Page
     {
-        private CrudUserService _crudUserService;
+        private readonly CrudUserService _crudUserService;
         public CrudUserPage()
         {
             InitializeComponent();

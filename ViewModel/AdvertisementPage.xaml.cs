@@ -1,14 +1,14 @@
-﻿using Billbort.Presenter;
+﻿using BillboardProject.Presenter;
 using DAL.Repositories.Implementations;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Billbort
+namespace BillboardProject
 {
     public partial class AdvertisementPage : Page
     {
-        private AdvertisementService _advertisementService;
+        private readonly AdvertisementService _advertisementService;
         public AdvertisementPage()
         {
             InitializeComponent();

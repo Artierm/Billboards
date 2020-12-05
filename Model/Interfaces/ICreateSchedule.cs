@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Billbort.Model.Interfaces
+﻿namespace BillboardProject.Model.Interfaces
 {
     public interface ICreateSchedule
     {
