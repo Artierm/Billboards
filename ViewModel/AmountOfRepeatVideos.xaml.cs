@@ -1,5 +1,5 @@
-﻿using BillboardsProject.Model.Components;
-using BillboardsProject.Model.Interfaces;
+﻿using Billbort.Model.Interfaces;
+using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BillboardsProject.View
+namespace Billbort.View
 {
     /// <summary>
     /// Interaction logic for AmountOfRepeatVideos.xaml

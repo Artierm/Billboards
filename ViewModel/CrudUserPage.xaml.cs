@@ -1,24 +1,21 @@
-﻿using BillboardsProject.Presents;
-using BillboardsProject.ViewModel;
-using System;
-using System.Collections.Generic;
+﻿using Billbort.Presents;
+using DAL.Repositories.Implementations;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace BillboardsProject
+namespace Billbort
 {
     public partial class CrudUserPage : Page
     {
-        private DatabaseContext _database;
-        private CrudUserPresenter _crudUserPresenter;
+        private CrudUserService _crudUserService;
         public CrudUserPage()
         {
             InitializeComponent();
-            _database = new DatabaseContext();
+            var createNewUserRepository = new CreateNewUserRepository();
 
-            _crudUserPresenter = new CrudUserPresenter();
-            List<User> users = _database.Users.ToList();
+            _crudUserService = new CrudUserService(createNewUserRepository, new CreateNewBillboardRepository());
+            var users = createNewUserRepository.GetAll();
             var realUsers = users.Where(c => c.Id != 1);
             usersGrid.ItemsSource = realUsers;
         }
@@ -30,7 +27,7 @@ namespace BillboardsProject
 
         public void Button_Click_Delete(object sender, RoutedEventArgs e)
         {
-            _crudUserPresenter.RemoveUser(sender);
+            _crudUserService.RemoveUser(sender);
             this.NavigationService.Navigate(new CrudUserPage());
         }
 
@@ -38,6 +35,5 @@ namespace BillboardsProject
         {
             this.NavigationService.Navigate(new CreateNewUserPage());
         }
-
     }
 }

@@ -1,10 +1,10 @@
-﻿using BillboardsProject.View;
+﻿using Billbort.View;
 using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace BillboardsProject
+namespace Billbort
 {
     public partial class SchedulePage : Page
     {

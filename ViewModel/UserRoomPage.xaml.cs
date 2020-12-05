@@ -1,8 +1,7 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace BillboardsProject
+namespace Billbort
 {
     public partial class UserRoomPage : Page
     {

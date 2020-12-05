@@ -1,24 +1,20 @@
-﻿using BillboardsProject.Presenter;
-using BillboardsProject.ViewModel;
-using System;
-using System.Collections.Generic;
+﻿using Billbort.Presenter;
+using DAL.Repositories.Implementations;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace BillboardsProject
+namespace Billbort
 {
     public partial class AdvertisementPage : Page
     {
-        private DatabaseContext database;
-        private AdvertisementPresenter _advertisementPresenter;
-
+        private AdvertisementService _advertisementService;
         public AdvertisementPage()
         {
             InitializeComponent();
-            database = new DatabaseContext();
-            _advertisementPresenter = new AdvertisementPresenter();
-            List<Video> videos = database.Videos.ToList();
+            var createNewVideoRepository = new CreateNewVideoRepository();
+            _advertisementService = new AdvertisementService(createNewVideoRepository);
+            var videos = createNewVideoRepository.GetAll();
             var userVideos = videos.Where(c => c.OwnerId == AuthorizationPage.UserId);
             advertisementGrid.ItemsSource = userVideos;
         }
@@ -34,7 +30,7 @@ namespace BillboardsProject
         }
         public void Button_Click_DeleteVideo(object sender, RoutedEventArgs e)
         {
-            _advertisementPresenter.DeleteVideo(sender);
+            _advertisementService.DeleteVideo(sender);
             this.NavigationService.Navigate(new AdvertisementPage());
         }
     }

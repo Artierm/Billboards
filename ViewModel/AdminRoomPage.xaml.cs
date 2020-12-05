@@ -1,12 +1,10 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace BillboardsProject
+namespace Billbort
 {
     public partial class AdminRoomPage : Page
     {
-
         public AdminRoomPage()
         {
             InitializeComponent();

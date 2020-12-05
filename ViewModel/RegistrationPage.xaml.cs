@@ -1,15 +1,16 @@
-﻿using BillboardsProject.Presents;
-using BillboardsProject.ViewModel;
+﻿using Billbort.Presents;
+using Billbort.ViewModel;
+using DAL.Repositories.Implementations;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace BillboardsProject
+namespace Billbort
 {
     public partial class RegistrationPage : Page, ICreateBillboard
     {
-        private RegistrationPresenter _registrationPresenter;
+        private RegistrationService _registrationService;
         public string RegistrationLogin { get => textBoxLogin.Text.Trim(); set => textBoxLogin.Text = value.Trim(); }
         public string RegistrationPassword { get => pass_box.Password.Trim(); set => pass_box.Password = value.Trim(); }
         public string RegistrationPasswordRepeat { get => pass_box2.Password.Trim(); set => pass_box2.Password = value.Trim(); }
@@ -17,7 +18,7 @@ namespace BillboardsProject
         public RegistrationPage()
         {
             InitializeComponent();
-            _registrationPresenter = new RegistrationPresenter();
+            _registrationService = new RegistrationService(new CreateNewUserRepository());
         }
 
         public   void Button_Click_Authorization(object sender, RoutedEventArgs e)
@@ -29,7 +30,7 @@ namespace BillboardsProject
         {
             if (Validation())
             {
-                if(_registrationPresenter.AddNewUser(RegistrationLogin, RegistrationPassword, RegistrationPasswordRepeat, out  bool admin))
+                if (_registrationService.AddNewUser(RegistrationLogin, RegistrationPassword, RegistrationPasswordRepeat, out bool admin))
                 {
                     if (admin)
                     {

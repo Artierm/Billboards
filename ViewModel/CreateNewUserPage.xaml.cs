@@ -1,23 +1,14 @@
-﻿using BillboardsProject.Presents;
-using BillboardsProject.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Billbort.Presents;
+using Billbort.ViewModel;
+using DAL.Repositories.Implementations;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace BillboardsProject
+namespace Billbort
 {
     public partial class CreateNewUserPage : Page, ICreateUsers
     {
-        private CreateNewUserPresenter _createNewUserPresenter;
+        private CreateNewUserService _createNewUserService;
         public string UserLogin { get => user_login.Text.Trim(); set => user_login.Text = value.Trim(); }
         public string UserPassword { get => user_password.Password.Trim(); set => user_password.Password = value.Trim(); }
 
@@ -25,12 +16,12 @@ namespace BillboardsProject
         public CreateNewUserPage()
         {          
             InitializeComponent();
-            _createNewUserPresenter = new CreateNewUserPresenter();
+            _createNewUserService = new CreateNewUserService(new CreateNewUserRepository());
         }
 
         public void Button_Click_AddUser(object sender, RoutedEventArgs e)
         {
-             _createNewUserPresenter.CreateUser(UserLogin, UserPassword, UserPasswordRepeat);
+             _createNewUserService.CreateUser(UserLogin, UserPassword, UserPasswordRepeat);
             this.NavigationService.Navigate(new CrudUserPage());
         }
 

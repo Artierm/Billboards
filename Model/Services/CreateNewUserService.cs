@@ -1,33 +1,33 @@
-﻿using BillboardsProject.Models;
+﻿using Billbort.Models;
+using DAL.Models;
+using DAL.Repositories.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 
-namespace BillboardsProject.Presents
+namespace Billbort.Presents
 {
-    class CreateNewUserPresenter
+    public class CreateNewUserService
     {
-        private DatabaseContext _database;
-        public CreateNewUserPresenter()
+        private readonly ICreateNewUserRepository _createNewUserRepository;
+        public CreateNewUserService(ICreateNewUserRepository createNewUserRepository)
         {
-            _database = new DatabaseContext();
+            _createNewUserRepository = createNewUserRepository;
         }
 
         public void CreateUser(string login, string password, string repeatPassword)
         {
-            List<User> users = _database.Users.ToList();
-            var newUser = users.Find(c => c.Login == login);
+            
+            var users = _createNewUserRepository.GetAll();
+            var newUser = users.FirstOrDefault(c => c.Login == login);
             if(newUser is null)
             {
                 if (password == repeatPassword)
                 {
-                    var salt = RegistrationModel.CreateSalt(10);
-                    var hashPassword = RegistrationModel.GenerateSHAHash256(password, salt);
+                    var salt = PasswordService.CreateSalt(10);
+                    var hashPassword = PasswordService.GenerateSHAHash256(password, salt);
                     User user = new User(login, hashPassword, salt);
-                    _database.Users.Add(user);
-                    _database.SaveChanges();
+                    _createNewUserRepository.Create(user);
                 }
                 else
                 {

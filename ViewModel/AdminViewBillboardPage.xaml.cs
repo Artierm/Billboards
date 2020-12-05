@@ -1,28 +1,28 @@
-﻿using BillboardsProject.Presenter;
-using System;
+﻿using Billbort.Presenter;
+using DAL.Models;
+using DAL.Repositories.Implementations;
+using DAL.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace BillboardsProject
+namespace Billbort
 {
     public partial class AdminViewBillboardPage : Page
     {
-        private DatabaseContext database;
-        private AdminViewBillboardPresenter _adminViewBillboardPresenter;
+        private AdminViewBillboardService _adminViewBillboardService;
         public AdminViewBillboardPage()
         {
             InitializeComponent();
-            database = new DatabaseContext();
-            _adminViewBillboardPresenter = new AdminViewBillboardPresenter();
+            var createNewBillboardRepository = new CreateNewBillboardRepository();
+            _adminViewBillboardService = new AdminViewBillboardService(createNewBillboardRepository);
             string address = UserViewBillboardPage.BillboardAddress;
-            List<Billboard> billboards = database.Billboards.ToList();
-            var billboard = billboards.Find(c => c.Address == address);
+            var billboards = createNewBillboardRepository.GetAll();
+            var billboard = billboards.FirstOrDefault(c => c.Address == address);
             List<Billboard> billsList = new List<Billboard>();
             billsList.Add(billboard);
             billsGrid.ItemsSource = billsList;
-           
         }
 
         public void Button_Click_Back(object sender, RoutedEventArgs e)
@@ -32,9 +32,8 @@ namespace BillboardsProject
 
         public void Button_Click_DeleteBillboard(object sender, RoutedEventArgs e)
         {
-            _adminViewBillboardPresenter.DeleteBillboard(sender);
+            _adminViewBillboardService.DeleteBillboard(sender);
             this.NavigationService.Navigate(new AdminBillboardsPage());
         }
-
     }
 }

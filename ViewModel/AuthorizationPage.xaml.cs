@@ -1,17 +1,15 @@
-﻿using BillboardsProject.Presenter;
-using BillboardsProject.Presents;
-using BillboardsProject.ViewModel;
+﻿using Billbort.Presenter;
+using Billbort.ViewModel;
+using DAL.Repositories.Implementations;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace BillboardsProject
+namespace Billbort
 {
     public partial class AuthorizationPage : Page, IAuthorization
     {
-        private AuthorizationPresenter _authorizationPresenter;
+        private AuthorizationService _authorizationService;
         public static int UserId { get; set; }
 
         public string AuthorizationLogin { get => authorization_login.Text.Trim(); set => authorization_login.Text = value.Trim(); }
@@ -19,12 +17,12 @@ namespace BillboardsProject
         public AuthorizationPage()
         {
             InitializeComponent();
-            _authorizationPresenter = new AuthorizationPresenter();
+            _authorizationService = new AuthorizationService(new CreateNewUserRepository());
         }
 
         public void Button_Click_Log_In(object sender, RoutedEventArgs e)
         {
-            if (_authorizationPresenter.CheckUser(AuthorizationLogin, AuthorizationPassword, out bool admin, out int userId))
+            if (_authorizationService.CheckUser(AuthorizationLogin, AuthorizationPassword, out bool admin, out int userId))
             {
                 if (admin)
                 {

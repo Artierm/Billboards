@@ -1,4 +1,5 @@
-﻿using BillboardsProject.Model.Components;
+﻿using DAL.Context;
+using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BillboardsProject.View
+namespace Billbort.View
 {
     /// <summary>
     /// Interaction logic for CreateSchedulePage.xaml
     /// </summary>
     public partial class CreateSchedulePage : Page
     {
-        DatabaseContext database;
+        private readonly DatabaseContext database;
         public CreateSchedulePage()
         {
             InitializeComponent();
@@ -52,7 +53,9 @@ namespace BillboardsProject.View
         {
             this.NavigationService.Navigate(new SchedulePage());
         }
+        
 
+        //занести в сервис
         private List<Video> CheckVideos()
         {
             List<Video> videos = database.Videos.ToList();
@@ -78,7 +81,5 @@ namespace BillboardsProject.View
             }
             return checkVideos;
         }
-        
-
     }
 }

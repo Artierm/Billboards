@@ -1,20 +1,19 @@
-﻿using BillboardsProject.ViewModel;
+﻿using Billbort.Models;
+using DAL.Models;
+using DAL.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Navigation;
-using BillboardsProject.Models;
 
-namespace BillboardsProject.Presents
+namespace Billbort.Presents
 {
-    class RegistrationPresenter
+    public class RegistrationService
     {
-        private DatabaseContext _database;
-        public RegistrationPresenter()
+        private readonly ICreateNewUserRepository _createNewUserRepository;
+        public RegistrationService(ICreateNewUserRepository createNewUserRepository)
         {
-            _database = new DatabaseContext();
+            _createNewUserRepository = createNewUserRepository;
         }
 
         public bool AddNewUser(string login, string password, string passwordRepeat, out bool admin)
@@ -23,15 +22,16 @@ namespace BillboardsProject.Presents
             admin = false;
             if(password == passwordRepeat)
             {
-                string salt = RegistrationModel.CreateSalt(10);
-                string hashpassword = RegistrationModel.GenerateSHAHash256(password, salt);
-                List<User> users = _database.Users.ToList();
+                string salt = PasswordService.CreateSalt(10);
+                string hashpassword = PasswordService.GenerateSHAHash256(password, salt);
+
+                var users = _createNewUserRepository.GetAll();
+
                 User user = new User(login, hashpassword, salt);
-                var character = users.Find(c => c.Login == login);
+                var character = users.FirstOrDefault(c => c.Login == login);
                 if (character is null)
                 {
-                    _database.Users.Add(user);
-                    _database.SaveChanges();
+                    _createNewUserRepository.Create(user);
                 }
                 else
                 {
@@ -39,8 +39,10 @@ namespace BillboardsProject.Presents
                     string errorMessage = FormattableString.Invariant($"This login already exists");
                     MessageBox.Show(errorMessage);
                 }
-                List<User> users2 = _database.Users.ToList();
-                var user2 = users2.Find(c => c.Login == login);
+
+                //исправить
+                var users2 = _createNewUserRepository.GetAll();
+                var user2 = users2.FirstOrDefault(c => c.Login == login);
                 AuthorizationPage.UserId = user2.Id;
                 if(AuthorizationPage.UserId == 1)
                 {

@@ -1,29 +1,26 @@
-﻿using BillboardsProject.Presents;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Billbort.Presents;
+using DAL.Repositories.Implementations;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace BillboardsProject
+namespace Billbort
 {
     public partial class AdminBillboardsPage : Page
     {
-        private DatabaseContext database;
-        private AdminBillboardsPresenter _adminBillboardsPresenter;
+        private AdminBillboardsService _adminBillboardsService;
+
         public AdminBillboardsPage()
         {
             InitializeComponent();
-            _adminBillboardsPresenter = new AdminBillboardsPresenter();
-            database = new DatabaseContext();
-            List<Billboard> billboards = database.Billboards.ToList();
+            var createNewBillboardRepository = new CreateNewBillboardRepository();
+            _adminBillboardsService = new AdminBillboardsService(createNewBillboardRepository);
+            var billboards = createNewBillboardRepository.GetAll();
             billsGrid.ItemsSource = billboards;
-    
         }
 
         private void Button_Click_ViewBillboard(object sender, RoutedEventArgs e)
         {
-            _adminBillboardsPresenter.ViewBillboard(sender, out int id, out string address, out string owner);
+            _adminBillboardsService.ViewBillboard(sender, out int id, out string address, out string owner);
             UserViewBillboardPage.BillboardAddress = address;
             UserViewBillboardPage.BillboardId = id;
             UserViewBillboardPage.BillboardOwner = owner;

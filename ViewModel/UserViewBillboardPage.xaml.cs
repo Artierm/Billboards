@@ -1,18 +1,19 @@
-﻿using BillboardsProject.Presents;
-using BillboardsProject.ViewModel;
-using System;
+﻿using Billbort.Presents;
+using DAL.Context;
+using DAL.Models;
+using DAL.Repositories.Implementations;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace BillboardsProject
+namespace Billbort
 {
     public partial class UserViewBillboardPage : Page
     {
 
         private DatabaseContext database;
-        private UserBillboardsPresenter _userBillboardsPresenter;
+        private UserViewBillboardService _userViewBillboardService;
         public static int BillboardId { get; set; }
         public static string BillboardOwner { get; set; }
         public static string BillboardAddress { get; set; }
@@ -20,12 +21,14 @@ namespace BillboardsProject
         public UserViewBillboardPage()
         {
             InitializeComponent();
-            _userBillboardsPresenter = new UserBillboardsPresenter();
+            var createNewBillboardRepository = new CreateNewBillboardRepository();
+
+            _userViewBillboardService = new UserViewBillboardService();
             string address = UserViewBillboardPage.BillboardAddress;
-            database = new DatabaseContext();
-            List<Billboard> billboards = database.Billboards.ToList();
-            var billboard = billboards.Find(c => c.Address == address);
+            var billboards = createNewBillboardRepository.GetAll();
+            var billboard = billboards.FirstOrDefault(c => c.Address == address);
             List<Billboard> billsList = new List<Billboard>();
+
             billsList.Add(billboard);
             billsGrid.ItemsSource = billsList;
         }
@@ -37,7 +40,7 @@ namespace BillboardsProject
 
         public void Button_Click_View_Billboard(object sender, RoutedEventArgs e)
         {
-            _userBillboardsPresenter.ViewBillboard(sender, out int id, out string address, out string owner);
+            _userViewBillboardService.ViewBillboard(sender, out int id, out string address, out string owner);
         }
 
     }

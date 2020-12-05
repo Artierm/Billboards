@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace BillboardsProject.Models
+namespace Billbort.Models
 {
-    public class RegistrationModel
+    public class PasswordService
     {
         public static string CreateSalt(int size)
         {
@@ -35,7 +33,5 @@ namespace BillboardsProject.Models
             byte[] hash = sha256hashstring.ComputeHash(bytes);
             return ByteArrayToHexString(hash);
         }
-
-
     }
 }

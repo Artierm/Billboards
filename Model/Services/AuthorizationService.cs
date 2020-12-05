@@ -1,30 +1,25 @@
-﻿using BillboardsProject.Models;
-using BillboardsProject.ViewModel;
-using System;
-using System.Collections.Generic;
+﻿using Billbort.Models;
+using DAL.Repositories.Interfaces;
 using System.Linq;
-using System.Text;
-using System.Windows.Navigation;
 
-namespace BillboardsProject.Presenter
+namespace Billbort.Presenter
 {
-    class AuthorizationPresenter
+    public class AuthorizationService
     {
-
-        private DatabaseContext _database;
-        public AuthorizationPresenter()
+        private readonly ICreateNewUserRepository _createNewUserRepository;
+        public AuthorizationService(ICreateNewUserRepository createNewUserRepository)
         {
-            _database = new DatabaseContext();
+            _createNewUserRepository = createNewUserRepository;
         }
 
         public bool CheckUser(string login, string password, out bool isAdmin, out int userId)
         {
             isAdmin = false;
-            List<User> users = _database.Users.ToList();
-            var checkedUser = users.Find(c => c.Login == login);
 
+            var users = _createNewUserRepository.GetAll();
+
+            var checkedUser = users.FirstOrDefault(c => c.Login == login);
             userId = 0;
-
             if (checkedUser is null)
             {
                 return false;
@@ -36,7 +31,7 @@ namespace BillboardsProject.Presenter
             }
 
             userId = checkedUser.Id;
-            var checkpassword = RegistrationModel.GenerateSHAHash256(password, checkedUser.Salt);
+            var checkpassword = PasswordService.GenerateSHAHash256(password, checkedUser.Salt);
             if (checkpassword == checkedUser.Password)
             {
                 return true;
@@ -47,5 +42,4 @@ namespace BillboardsProject.Presenter
             }
         }
     }
-    
 }

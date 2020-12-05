@@ -1,7 +1,7 @@
-﻿using BillboardsProject.Presents;
+﻿using Billbort.Presents;
 using System.Windows;
 
-namespace BillboardsProject
+namespace Billbort
 {
     public partial class MainWindow : Window
     {

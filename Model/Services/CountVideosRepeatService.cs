@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using DAL.Context;
 
-namespace BillboardsProject.Model.Services
+namespace Billbort.Model.Services
 {
- 
-    class CountVideosRepeatService
+    public class CountVideosRepeatService
     {
         private DatabaseContext _database;
         CountVideosRepeatService()
         {
             _database = new DatabaseContext();
         }
-
-
-        
     }
 }

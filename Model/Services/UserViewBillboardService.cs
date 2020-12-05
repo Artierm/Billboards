@@ -1,27 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using DAL.Models;
 using System.Windows.Controls;
 
-namespace BillboardsProject.Presents
+namespace Billbort.Presents
 {
-    class UserBillboardsPresenter
+    public class UserViewBillboardService
     {
-        private DatabaseContext _database;
-        public UserBillboardsPresenter()
+        public UserViewBillboardService()
         {
-            _database = new DatabaseContext();
         }
-
         public void ViewBillboard(object sender, out int id, out string address, out string owner)
         {
             Button btnSender = (Button)sender;
-            var dataContextFromButton = (Billboard)btnSender.DataContext;
-            
+            var dataContextFromButton = (Billboard)btnSender.DataContext;   
             address = dataContextFromButton.Address;
             id = dataContextFromButton.Id;
             owner = dataContextFromButton.Owner;
         }
-
     }
 }

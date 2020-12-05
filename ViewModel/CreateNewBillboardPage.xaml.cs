@@ -1,20 +1,20 @@
-﻿using BillboardsProject.Presents;
-using BillboardsProject.ViewModel;
-using System;
-using System.Collections.Generic;
+﻿using Billbort.Presents;
+using Billbort.ViewModel;
+using DAL.Repositories.Implementations;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace BillboardsProject
+namespace Billbort
 {
     public partial class CreateNewBillboardPage : Page, IRegistration
     {
-        private CreateNewBillboardPresenter _createNewBillboardPresenter;
+        private CreateNewBillboardService _createNewBillboardService;
+
         public string BillboardCreateAddress { get => billboard_address.Text.Trim(); set => billboard_address.Text = value.Trim(); }
         public CreateNewBillboardPage()
         {
             InitializeComponent();
-            _createNewBillboardPresenter = new CreateNewBillboardPresenter();
+            _createNewBillboardService = new CreateNewBillboardService(new CreateNewBillboardRepository());
         }
 
         public void Button_Click_Back(object sender, RoutedEventArgs e)
@@ -23,7 +23,7 @@ namespace BillboardsProject
         }
         public void Button_Click_AddBillboard(object sender, RoutedEventArgs e)
         {
-            _createNewBillboardPresenter.AddBillboard(BillboardCreateAddress);
+            _createNewBillboardService.AddBillboard(BillboardCreateAddress);
             this.NavigationService.Navigate(new AdminBillboardsPage());
         }
     }

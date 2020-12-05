@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using DAL.Models;
+using DAL.Repositories.Interfaces;
 using System.Windows.Controls;
 
-namespace BillboardsProject.Presents
+namespace Billbort.Presents
 {
-    class AdminBillboardsPresenter
+    public class AdminBillboardsService
     {
-        private DatabaseContext _database;
-
-        public AdminBillboardsPresenter()
+        private readonly ICreateNewBillboardRepository _createNewBillboardRepository;
+        public AdminBillboardsService(ICreateNewBillboardRepository createNewBillboardRepository)
         {
-            _database = new DatabaseContext();
+            _createNewBillboardRepository = createNewBillboardRepository;
         }
 
         public void ViewBillboard(object sender, out int id, out string address, out string owner)

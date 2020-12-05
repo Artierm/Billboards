@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BillboardsProject.ViewModel
+namespace Billbort.ViewModel
 {
     public interface IAuthorization
     {
