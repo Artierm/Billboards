@@ -2,7 +2,7 @@
 using DAL.Repositories.Interfaces;
 using System.Linq;
 
-namespace BillboardProject.Presenter
+namespace BillboardProject.Service
 {
     public class AuthorizationService
     {

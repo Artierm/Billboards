@@ -2,7 +2,7 @@
 using DAL.Repositories.Interfaces;
 using System.Windows.Controls;
 
-namespace BillboardProject.Presents
+namespace BillboardProject.Service
 {
     public class AdminBillboardsService
     {

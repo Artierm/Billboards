@@ -1,4 +1,4 @@
-﻿namespace BillboardProject.ViewModel
+﻿namespace BillboardProject.Model
 {
     public interface ICreateBillboard
     {

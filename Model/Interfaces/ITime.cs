@@ -1,4 +1,4 @@
-﻿namespace BillboardsProject.Model.Interfaces
+﻿namespace BillboardProject.Model
 {
     interface ITime
     {

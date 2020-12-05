@@ -1,7 +1,7 @@
 ﻿using DAL.Models;
 using System.Windows.Controls;
 
-namespace BillboardProject.Presents
+namespace BillboardProject.Service
 {
     public class UserViewBillboardService
     {

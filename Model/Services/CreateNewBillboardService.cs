@@ -1,7 +1,7 @@
 ﻿using DAL.Models;
 using DAL.Repositories.Interfaces;
 
-namespace BillboardProject.Presents
+namespace BillboardProject.Service
 {
     public class CreateNewBillboardService
     {
@@ -13,7 +13,7 @@ namespace BillboardProject.Presents
 
         public void AddBillboard(string address)
         {
-            DAL.Models.Billboard billboard = new DAL.Models.Billboard(string.Empty, address);
+            Billboard billboard = new Billboard(string.Empty, address);
             _createNewBillboardRepository.Create(billboard);
         }
     }

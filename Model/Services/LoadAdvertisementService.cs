@@ -1,7 +1,7 @@
 ﻿using DAL.Models;
 using DAL.Repositories.Interfaces;
 
-namespace BillboardProject.Presents
+namespace BillboardProject.Service
 {
     public class LoadAdvertisementService
     {

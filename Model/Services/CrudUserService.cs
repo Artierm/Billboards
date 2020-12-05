@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Windows.Controls;
 
-namespace BillboardProject.Presents
+namespace BillboardProject.Service
 {
     public class CrudUserService
     {

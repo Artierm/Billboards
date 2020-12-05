@@ -18,7 +18,7 @@ Title="Billboards" >
                     <Button HorizontalAlignment="Right" Content="Back" Click="Button_Click_Back"  Style="{StaticResource MaterialDesignFlatButton}"/>
                 </Grid>
                 <TextBox x:Name="billboard_address" materialDesign:HintAssist.Hint="Enter billboard address" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <Button Content = "Add billboard"  Width=" 150" Click="Button_Click_AddBillboard"/>
+                <Button Content = "Add billboard" Margin="20" Width=" 150" Click="Button_Click_AddBillboard"/>
             </StackPanel>
         </Border>
     </Grid>

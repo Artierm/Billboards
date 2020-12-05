@@ -1,4 +1,4 @@
-﻿namespace BillboardProject.Model.Interfaces
+﻿namespace BillboardProject.Model
 {
     public interface ICreateSchedule
     {

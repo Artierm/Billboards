@@ -1,4 +1,4 @@
-﻿namespace BillboardsProject.Model.Services
+﻿namespace BillboardProject.Model.Services
 {
     class TimeService
     {

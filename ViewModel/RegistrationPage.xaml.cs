@@ -1,6 +1,5 @@
-﻿using BillboardsProject.Model.Interfaces;
-using BillboardProject.Presents;
-using BillboardProject.ViewModel;
+﻿using BillboardProject.Model;
+using BillboardProject.Service;
 using DAL.Repositories.Implementations;
 using System;
 using System.Windows;

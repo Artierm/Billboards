@@ -3,7 +3,7 @@ using DAL.Repositories.Interfaces;
 using System.Linq;
 using System.Windows.Controls;
 
-namespace BillboardProject.Presents
+namespace BillboardProject.Service
 {
     public class RegisterBillboardService
     {
@@ -20,7 +20,7 @@ namespace BillboardProject.Presents
             var billboards = _createNewBillboardRepository.GetAll();
             var users = _createNewUserRepository.GetAll();
             Button btnSender = (Button)sender;
-            var dataContextFromBtn = (DAL.Models.Billboard)btnSender.DataContext;
+            var dataContextFromBtn = (Billboard)btnSender.DataContext;
             var billboard = billboards.FirstOrDefault(c => c.Id == dataContextFromBtn.Id);
             var owner = users.FirstOrDefault(c => c.Id == AuthorizationPage.UserId);
 

@@ -1,11 +1,10 @@
-﻿using BillboardsProject.Model.Interfaces;
-using BillboardProject.Presenter;
-using BillboardProject.ViewModel;
+﻿using BillboardProject.Service;
 using DAL.Repositories.Implementations;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using BillboardProject.Model;
 
 namespace BillboardProject
 {

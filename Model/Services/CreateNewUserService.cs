@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using System.Windows;
 
-namespace BillboardProject.Presents
+namespace BillboardProject.Service
 {
     public class CreateNewUserService
     {
