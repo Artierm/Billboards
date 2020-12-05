@@ -30,7 +30,7 @@
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button Content = "Register new billboard"  Width=" 250" Click="Button_Click_View_Registration"/>
+                <Button Content = "Register new billboard"  Margin="20" Width=" 250" Click="Button_Click_View_Registration"/>
             </StackPanel>
         </Border>
     </Grid>

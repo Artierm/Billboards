@@ -1,4 +1,5 @@
-﻿using DAL.Repositories.Interfaces;
+﻿using DAL.Models;
+using DAL.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
@@ -8,22 +9,21 @@ namespace Billbort
     public class CreateScheduleService
     {
         private readonly ICreateNewVideoRepository _createNewVideoRepository;
-        private readonly ICreateNewScheduleRepository _createNewScheduleRepository;
-        //public CreateScheduleService(ICreateNewScheduleRepository createNewScheduleRepository)
-        //{
-        //    _createNewScheduleRepository = createNewScheduleRepository;
-        //}
+        public CreateScheduleService(ICreateNewVideoRepository createNewVideoRepository)
+        {
+            _createNewVideoRepository = createNewVideoRepository;
+        }
 
 
-        //public void CreateSchedule(object sender)
-        //{
-        //    List<Video> videos = _database.Videos.ToList();
-        //    Button btnSender = (Button)sender;
-        //    var dataContextFromBtn = (Video)btnSender.DataContext;
-        //    var video = videos.Find(c => c.NameOfVideo == dataContextFromBtn.NameOfVideo);
-        //    CountVideosRepeat countVideosRepeat = new CountVideosRepeat();
-        //    _database.Videos.Remove(video);
-        //    _database.SaveChanges();
-        //}
+        public void CreateSchedule(object sender)
+        {
+
+            var videos = _createNewVideoRepository.GetAll();
+            Button btnSender = (Button)sender;
+            var dataContextFromBtn = (Video)btnSender.DataContext;
+            var video = _createNewVideoRepository.GetByName(dataContextFromBtn.NameOfVideo);
+            //CountVideosRepeat countVideosRepeat = new CountVideosRepeat();
+            _createNewVideoRepository.Delete(video);
+        }
     }
 }

@@ -13,6 +13,7 @@ Title="Billboards" >
                 <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
             </Border.Effect>
             <StackPanel>
+                <TextBlock x:Name="time" FontSize="15"  HorizontalAlignment="Left"/>
                 <TextBlock Text="Authorization" FontSize="30" FontWeight="Bold" Margin="0 0 0 20"/>
                 <Grid Margin="0 0 0 20">
                     <Button HorizontalAlignment="Right" Content="Registration" Click="Button_Click_Registration" Width="150" Style="{StaticResource MaterialDesignFlatButton}"/>

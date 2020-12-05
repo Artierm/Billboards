@@ -20,14 +20,14 @@
                 <DataGrid x:Name="videosGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserReorderColumns="True" CanUserSortColumns="True" ItemsSource="{DynamicResource ResourceKey=bills}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25">
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="video_name" Header="Name Video" Binding="{Binding Path=NameOfVideo}" Width="auto" />
-                        <DataGridTemplateColumn Header="Count of Repeat" x:Name="video_count_repeat1">
+                        <DataGridTextColumn Header="Count of Repeats" Binding="{Binding Path=TimeOfVideo}"   Width="auto"/>
+                        <DataGridTemplateColumn Header="Save" x:Name="video_count_repeat1">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="integer"  x:Name="video_count_repeat3">
                                     <Button Content="Save" ></Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Count of Repeats" Binding="{Binding Path=TimeOfVideo}"   Width="auto"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <!--<Button Content = "Save and continue"  Click="Button_Click_Save_and_Continue"  Margin="0 20" Width=" 150"/>-->

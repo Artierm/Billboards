@@ -41,6 +41,11 @@ namespace Billbort.View
                 checkBox.Content = item.NameOfVideo.ToString();
                 scheduleCheckbox.Children.Add(checkBox);
             }
+            Button button = new Button();
+            button.Content = "Save and continue";
+            button.Click += Button_Click_Save_and_Continue;
+            button.Width = 150;
+            scheduleCheckbox.Children.Add(button);
         }
 
         public void Button_Click_Save_and_Continue(object sender, RoutedEventArgs e)

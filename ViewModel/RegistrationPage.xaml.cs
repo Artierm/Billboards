@@ -1,22 +1,26 @@
-﻿using Billbort.Presents;
+﻿using BillboardsProject.Model.Interfaces;
+using Billbort.Presents;
 using Billbort.ViewModel;
 using DAL.Repositories.Implementations;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace Billbort
 {
-    public partial class RegistrationPage : Page, ICreateBillboard
+    public partial class RegistrationPage : Page, ICreateBillboard, ITime
     {
         private RegistrationService _registrationService;
         public string RegistrationLogin { get => textBoxLogin.Text.Trim(); set => textBoxLogin.Text = value.Trim(); }
         public string RegistrationPassword { get => pass_box.Password.Trim(); set => pass_box.Password = value.Trim(); }
         public string RegistrationPasswordRepeat { get => pass_box2.Password.Trim(); set => pass_box2.Password = value.Trim(); }
+        public string Time { get => time.Text; set => time.Text = value.ToString(); }
 
         public RegistrationPage()
         {
+           // StartClock();
             InitializeComponent();
             _registrationService = new RegistrationService(new CreateNewUserRepository());
         }
@@ -43,6 +47,19 @@ namespace Billbort
                 }
             }
        
+        }
+
+        public void StartClock()
+        {
+            DispatcherTimer dispstcherTimer = new DispatcherTimer();
+            dispstcherTimer.Interval = TimeSpan.FromSeconds(1);
+            dispstcherTimer.Tick += TickEvent;
+            dispstcherTimer.Start();
+        }
+
+        private void TickEvent(object sender, EventArgs e)
+        {
+            Time = DateTime.Now.ToString();
         }
 
         public bool Validation()

@@ -17,7 +17,6 @@
                     <Button HorizontalAlignment="Right" Content="Back" Click="Button_Click_Back"  Style="{StaticResource MaterialDesignFlatButton}"/>
                 </Grid>
                 <TextBlock Text="Please add videos to schedule" FontSize="15"  Margin="0"/>
-                <Button Content = "Save and continue"  Click="Button_Click_Save_and_Continue"  Margin="0 20" Width=" 150"/>
             </StackPanel>
         </Border>
     </Grid>
