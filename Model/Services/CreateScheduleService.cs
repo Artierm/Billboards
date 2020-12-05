@@ -1,7 +1,5 @@
 ﻿using DAL.Models;
 using DAL.Repositories.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Controls;
 
 namespace Billbort

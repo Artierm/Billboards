@@ -1,5 +1,4 @@
 ﻿using Billbort.Presents;
-using DAL.Context;
 using DAL.Models;
 using DAL.Repositories.Implementations;
 using System.Collections.Generic;
@@ -11,8 +10,6 @@ namespace Billbort
 {
     public partial class UserViewBillboardPage : Page
     {
-
-        private DatabaseContext database;
         private UserViewBillboardService _userViewBillboardService;
         public static int BillboardId { get; set; }
         public static string BillboardOwner { get; set; }

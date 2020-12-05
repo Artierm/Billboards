@@ -1,17 +1,7 @@
-﻿using Billbort.Model.Interfaces;
-using DAL.Models;
-using System;
+﻿using DAL.Models;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Billbort.View
 {
@@ -26,23 +16,7 @@ namespace Billbort.View
             InitializeComponent();
             Videos = videos;
             videosGrid.ItemsSource = videos;
-            //Initialization();
         }
-
-
-        //public void Initialization()
-        //{
-        //    foreach (var item in Videos)
-        //    {
-        //        TextBlock textBlock = new TextBlock();
-        //        textBlock.Name = "video_name";
-        //        textBlock.Text = item.NameOfVideo;
-        //        TextBox textBox = new TextBox();
-        //        textBox.Name = "video_count_of_repeat";
-        //        videoCheckbox.Children.Add(textBlock);
-        //        videoCheckbox.Children.Add(textBox);
-        //    }
-        //}
         public void Button_Click_Back(object sender, RoutedEventArgs e)
         {
             

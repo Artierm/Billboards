@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Threading;
-
-namespace BillboardsProject.Model.Services
+﻿namespace BillboardsProject.Model.Services
 {
     class TimeService
     {

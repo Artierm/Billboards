@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BillboardsProject.Model.Interfaces
+﻿namespace BillboardsProject.Model.Interfaces
 {
     interface ITime
     {
