@@ -14,7 +14,7 @@ namespace BillboardProject
         public CreateNewBillboardPage()
         {
             InitializeComponent();
-            _createNewBillboardService = new CreateNewBillboardService(new CreateNewBillboardRepository());
+            _createNewBillboardService = new CreateNewBillboardService(new CreateNewBillboardRepository(), new CreateNewLogRepository());
         }
 
         public void Button_Click_Back(object sender, RoutedEventArgs e)

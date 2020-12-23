@@ -13,7 +13,9 @@ namespace BillboardProject
         {
             InitializeComponent();
             var createNewBillboardRepository = new CreateNewBillboardRepository();
-            _adminBillboardsService = new AdminBillboardsService(createNewBillboardRepository);
+            var createNewLogRepository = new CreateNewLogRepository();
+            var createNewUserRepository = new CreateNewUserRepository();
+            _adminBillboardsService = new AdminBillboardsService(createNewBillboardRepository,createNewLogRepository, createNewUserRepository);
             var billboards = createNewBillboardRepository.GetAll();
             billsGrid.ItemsSource = billboards;
         }

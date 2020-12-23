@@ -20,7 +20,7 @@ namespace BillboardProject
         {
            // StartClock();
             InitializeComponent();
-            _authorizationService = new AuthorizationService(new CreateNewUserRepository());
+            _authorizationService = new AuthorizationService(new CreateNewUserRepository(), new CreateNewLogRepository());
         }
 
         public void Button_Click_Log_In(object sender, RoutedEventArgs e)

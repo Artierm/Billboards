@@ -14,7 +14,7 @@ namespace BillboardProject
             InitializeComponent();
             var createNewUserRepository = new CreateNewUserRepository();
 
-            _crudUserService = new CrudUserService(createNewUserRepository, new CreateNewBillboardRepository());
+            _crudUserService = new CrudUserService(createNewUserRepository, new CreateNewBillboardRepository(), new CreateNewLogRepository());
             var users = createNewUserRepository.GetAll();
             var realUsers = users.Where(c => c.Id != 1);
             usersGrid.ItemsSource = realUsers;

@@ -15,7 +15,7 @@ namespace BillboardProject
         public LoadAdvertisementPage()
         {
             InitializeComponent();
-            _loadAdvertisementService = new LoadAdvertisementService(new CreateNewVideoRepository());
+            _loadAdvertisementService = new LoadAdvertisementService(new CreateNewVideoRepository(), new CreateNewLogRepository(), new CreateNewUserRepository());
         }
         public void Button_Click_Back(object sender, RoutedEventArgs e)
         {

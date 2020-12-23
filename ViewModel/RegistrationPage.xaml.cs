@@ -21,7 +21,7 @@ namespace BillboardProject
         {
            // StartClock();
             InitializeComponent();
-            _registrationService = new RegistrationService(new CreateNewUserRepository());
+            _registrationService = new RegistrationService(new CreateNewUserRepository(), new CreateNewLogRepository());
         }
 
         public   void Button_Click_Authorization(object sender, RoutedEventArgs e)

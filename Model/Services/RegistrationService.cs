@@ -10,9 +10,11 @@ namespace BillboardProject.Service
     public class RegistrationService
     {
         private readonly ICreateNewUserRepository _createNewUserRepository;
-        public RegistrationService(ICreateNewUserRepository createNewUserRepository)
+        private readonly ICreateNewLogRepository _createNewLogRepository;
+        public RegistrationService(ICreateNewUserRepository createNewUserRepository, ICreateNewLogRepository createNewLogRepository)
         {
             _createNewUserRepository = createNewUserRepository;
+            _createNewLogRepository = createNewLogRepository;
         }
 
         public bool AddNewUser(string login, string password, string passwordRepeat, out bool admin)
@@ -53,6 +55,10 @@ namespace BillboardProject.Service
                 string errorMessage = FormattableString.Invariant($"Passwords do not match");
                 MessageBox.Show(errorMessage);
             }
+
+            string message = $"{login} is registered";
+            Log log = new Log(DateTime.Now, message);
+            _createNewLogRepository.Create(log);
             return validationParameter;
         }
     }

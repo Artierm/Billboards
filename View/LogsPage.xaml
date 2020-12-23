@@ -12,12 +12,13 @@ Title="Billboards" >
             <Border.Effect>
                 <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
             </Border.Effect>
-            <StackPanel>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel>
                 <TextBlock Text="Logs" FontSize="30" FontWeight="Bold" Margin="0 0 0 20"/>
                 <Grid Margin="0 0 0 20">
                     <Button HorizontalAlignment="Right" Content="Back" Click="Button_Click_Back" Width="150" Style="{StaticResource MaterialDesignFlatButton}"/>
                 </Grid>
-                <DataGrid x:Name="logsGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserReorderColumns="True" CanUserSortColumns="True" ItemsSource="{DynamicResource ResourceKey=bills}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25">
+                <DataGrid x:Name="logsGrid"   CanUserAddRows="False" ItemsSource="{DynamicResource ResourceKey=bills}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Log time" Binding="{Binding Path=LogTime}" Width="auto" />
                         <DataGridTextColumn Header="Log information"  Binding="{Binding Path=LogInformation}" Width="auto" />
@@ -25,6 +26,7 @@ Title="Billboards" >
                 </DataGrid>
                 <Button Content = "Download logs" Margin="0 20" Width=" 150"/>
             </StackPanel>
+                </ScrollViewer>
         </Border>
     </Grid>
 </Page>

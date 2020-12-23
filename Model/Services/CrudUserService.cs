@@ -10,10 +10,12 @@ namespace BillboardProject.Service
     {
         private readonly ICreateNewBillboardRepository _createNewBillboardRepository;
         private readonly ICreateNewUserRepository _createNewUserRepository;
-        public CrudUserService(ICreateNewUserRepository createNewUserRepository, ICreateNewBillboardRepository createNewBillboardRepository)
+        private readonly ICreateNewLogRepository _createNewLogRepository;
+        public CrudUserService(ICreateNewUserRepository createNewUserRepository, ICreateNewBillboardRepository createNewBillboardRepository, ICreateNewLogRepository createNewLogRepository)
         {
             _createNewBillboardRepository = createNewBillboardRepository;
             _createNewUserRepository = createNewUserRepository;
+            _createNewLogRepository = createNewLogRepository;
         }
 
         public void RemoveUser(object sender)
@@ -30,7 +32,9 @@ namespace BillboardProject.Service
             {
                 billboard.Owner = string.Empty;
             }
-
+            string message = $"Admin delete user {dataContextFromBtn.Login}";
+            Log log = new Log(DateTime.Now, message);
+            _createNewLogRepository.Create(log);
             _createNewUserRepository.Delete(user);
         }
 
@@ -42,7 +46,7 @@ namespace BillboardProject.Service
             var dataContextFromBtn = (User)btnSender.DataContext;
             var user = users.FirstOrDefault(c => c.Id == dataContextFromBtn.Id);
 
-            _createNewUserRepository.Delete(user);
+            _createNewUserRepository.Create(user); //  _createNewUserRepository.Delete(user);
         }
     }
 }

@@ -11,7 +11,8 @@
             <Border.Effect>
                 <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
             </Border.Effect>
-            <StackPanel>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel>
                 <TextBlock Text="Billboards" FontSize="30" FontWeight="Bold" Margin="0 0 0 20"/>
                 <Grid>
                     <Button HorizontalAlignment="Right" Content="Back" Click="Button_Click_Back" Style="{StaticResource MaterialDesignFlatButton}"/>
@@ -30,6 +31,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
+            </ScrollViewer>
         </Border>
     </Grid>
 </Page>

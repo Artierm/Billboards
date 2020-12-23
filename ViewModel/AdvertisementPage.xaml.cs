@@ -13,7 +13,9 @@ namespace BillboardProject
         {
             InitializeComponent();
             var createNewVideoRepository = new CreateNewVideoRepository();
-            _advertisementService = new AdvertisementService(createNewVideoRepository);
+            var createNewLogRepository = new CreateNewLogRepository();
+            var createNewUserRepository = new CreateNewUserRepository();
+            _advertisementService = new AdvertisementService(createNewVideoRepository, createNewLogRepository, createNewUserRepository);
             var videos = createNewVideoRepository.GetAll();
             var userVideos = videos.Where(c => c.OwnerId == AuthorizationPage.UserId);
             advertisementGrid.ItemsSource = userVideos;

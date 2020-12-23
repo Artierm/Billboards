@@ -15,7 +15,8 @@ namespace BillboardProject
         {
             InitializeComponent();
             var createNewBillboardRepository = new CreateNewBillboardRepository();
-            _adminViewBillboardService = new AdminViewBillboardService(createNewBillboardRepository);
+            var createNewLogRepository = new CreateNewLogRepository();
+            _adminViewBillboardService = new AdminViewBillboardService(createNewBillboardRepository, createNewLogRepository);
             string address = UserViewBillboardPage.BillboardAddress;
             var billboards = createNewBillboardRepository.GetAll();
             var billboard = billboards.FirstOrDefault(c => c.Address == address);

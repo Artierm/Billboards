@@ -16,7 +16,7 @@ namespace BillboardProject
         public CreateNewUserPage()
         {          
             InitializeComponent();
-            _createNewUserService = new CreateNewUserService(new CreateNewUserRepository());
+            _createNewUserService = new CreateNewUserService(new CreateNewUserRepository(), new CreateNewLogRepository());
         }
 
         public void Button_Click_AddUser(object sender, RoutedEventArgs e)

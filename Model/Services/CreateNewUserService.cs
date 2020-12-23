@@ -10,9 +10,11 @@ namespace BillboardProject.Service
     public class CreateNewUserService
     {
         private readonly ICreateNewUserRepository _createNewUserRepository;
-        public CreateNewUserService(ICreateNewUserRepository createNewUserRepository)
+        private readonly ICreateNewLogRepository _createNewLogRepository;
+        public CreateNewUserService(ICreateNewUserRepository createNewUserRepository, ICreateNewLogRepository createNewLogRepository)
         {
             _createNewUserRepository = createNewUserRepository;
+            _createNewLogRepository = createNewLogRepository;
         }
 
         public void CreateUser(string login, string password, string repeatPassword)
@@ -28,6 +30,9 @@ namespace BillboardProject.Service
                     var hashPassword = PasswordService.GenerateSHAHash256(password, salt);
                     User user = new User(login, hashPassword, salt);
                     _createNewUserRepository.Create(user);
+                    string message = $"Admin create new user {login}";
+                    Log log = new Log(DateTime.Now, message);
+                    _createNewLogRepository.Create(log);
                 }
                 else
                 {

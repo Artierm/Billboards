@@ -15,7 +15,7 @@ namespace BillboardProject
             InitializeComponent();
             var createNewBillboardRepository = new CreateNewBillboardRepository();
 
-            _registerBillboardService = new RegisterBillboardService(createNewBillboardRepository, new CreateNewUserRepository());
+            _registerBillboardService = new RegisterBillboardService(createNewBillboardRepository, new CreateNewUserRepository(), new CreateNewLogRepository());
             var billboards = createNewBillboardRepository.GetAll();
             var newBillboards = billboards.Where(c => c.Owner == string.Empty);
             billsGrid.ItemsSource = newBillboards;
