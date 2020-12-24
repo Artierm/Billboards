@@ -3,17 +3,21 @@ using DAL.Repositories.Implementations;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using BillboardsProject.View;
+using DAL.Repositories.Interfaces;
 
 namespace BillboardProject
 {
     public partial class UserBillboardsPage : Page
     {
         private readonly UserViewBillboardService _userViewBillboardService;
-        public UserBillboardsPage()
+
+        private  readonly  ICreateNewBillboardRepository _createNewBillboardRepository;
+        public UserBillboardsPage(ICreateNewBillboardRepository createNewBillboardRepository)
         {
             InitializeComponent();
-            var createNewBillboardRepository = new CreateNewBillboardRepository();
-            var billboards = createNewBillboardRepository.GetAll();
+            _createNewBillboardRepository = createNewBillboardRepository;
+            var billboards = _createNewBillboardRepository.GetAll();
             var newBillboards = billboards.Where(c => c.Owner != string.Empty);
             billsGrid.ItemsSource = newBillboards;
             _userViewBillboardService = new UserViewBillboardService();
@@ -31,6 +35,12 @@ namespace BillboardProject
         private void Button_Click_Back(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new UserRoomPage());
+        }
+
+        private void Button_Click_Add_Schedule (object sender, RoutedEventArgs e)
+        {
+
+            this.NavigationService.Navigate(new BillboardAddSchedulePage(new CreateNewScheduleRepository(), new CreateNewUserRepository()));
         }
 
         private void Button_Click_View_Registration(object sender, RoutedEventArgs e)

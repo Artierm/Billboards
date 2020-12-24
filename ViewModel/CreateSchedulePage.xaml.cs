@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using DAL.Repositories.Interfaces;
 
 namespace BillboardProject.View
 {
@@ -15,13 +16,15 @@ namespace BillboardProject.View
         {
             InitializeComponent();
             database = new DatabaseContext();
+      
             DynamicCheckBox();         
         }
 
         public void Button_Click_Save_and_Continue(object sender, RoutedEventArgs e)
         {
            var videos =  CheckVideos();
-            this.NavigationService.Navigate(new AmountOfRepeatVideos(videos));
+           CreateScheduleForUser(videos);
+            this.NavigationService.Navigate(new CreateSchedulePage());
         }
 
         public void Button_Click_Back(object sender, RoutedEventArgs e)
@@ -32,6 +35,7 @@ namespace BillboardProject.View
         private void DynamicCheckBox()
         {
             var itemList = database.Videos.ToList();
+               // _createNewVideoRepository.GetAll();
             var itemCorrectList = itemList.Where(c => c.OwnerId == AuthorizationPage.UserId);
             foreach (var item in itemCorrectList)
             {
@@ -71,7 +75,27 @@ namespace BillboardProject.View
                     checkVideos.Add(value);
                 }
             }
+
+
+
             return checkVideos;
         }
+
+
+        private void CreateScheduleForUser(List<Video> checkVideos)
+        {
+            var user = database.Users.FirstOrDefault(c => c.Id == AuthorizationPage.UserId);
+            Schedule schedule = new Schedule(null, user);
+            database.Schedules.Add(schedule);
+            foreach (var video in checkVideos)
+            {
+                ScheduleAndVideo scheduleAndVideo = new ScheduleAndVideo(video, schedule);
+                database.ScheduleAndVideo.Add(scheduleAndVideo);
+            }
+
+            database.SaveChanges();
+        }
+
+
     }
 }

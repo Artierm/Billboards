@@ -24,7 +24,7 @@ namespace BillboardProject
             string address = UserViewBillboardPage.BillboardAddress;
             var billboards = createNewBillboardRepository.GetAll();
             var billboard = billboards.FirstOrDefault(c => c.Address == address);
-            List<DAL.Models.Billboard> billsList = new List<DAL.Models.Billboard>();
+            List<Billboard> billsList = new List<Billboard>();
 
             billsList.Add(billboard);
             billsGrid.ItemsSource = billsList;
@@ -32,7 +32,7 @@ namespace BillboardProject
 
         public void Button_Click_Back(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new UserBillboardsPage());
+            this.NavigationService.Navigate(new UserBillboardsPage(new CreateNewBillboardRepository()));
         }
 
         public void Button_Click_View_Billboard(object sender, RoutedEventArgs e)

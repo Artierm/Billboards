@@ -24,7 +24,7 @@
                         <DataGridTemplateColumn Header="Save" x:Name="video_count_repeat1">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="integer"  x:Name="video_count_repeat3">
-                                    <Button Content="Save" ></Button>
+                                    <Button Content="Save" Click="Button_Click_Save" ></Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

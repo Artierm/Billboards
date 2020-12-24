@@ -24,7 +24,7 @@ Title="Billboards" >
                         <DataGridTextColumn Header="Log information"  Binding="{Binding Path=LogInformation}" Width="auto" />
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button Content = "Download logs" Margin="0 20" Width=" 150"/>
+                <Button Content = "Download logs" Click="Button_click_Create_Logs" Margin="0 20" Width=" 150"/>
             </StackPanel>
                 </ScrollViewer>
         </Border>

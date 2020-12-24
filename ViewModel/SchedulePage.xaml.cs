@@ -1,6 +1,7 @@
 ﻿using BillboardProject.View;
 using System.Windows;
 using System.Windows.Controls;
+using DAL.Repositories.Implementations;
 
 namespace BillboardProject
 {

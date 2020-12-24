@@ -29,8 +29,15 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Schedule">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Schedule" Click="Button_Click_Add_Schedule"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     </DataGrid.Columns>
-                </DataGrid>
+                    </DataGrid>
                 <Button Content = "Register new billboard"  Margin="20" Width=" 250" Click="Button_Click_View_Registration"/>
             </StackPanel>
                 </ScrollViewer>
