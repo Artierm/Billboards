@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using BillboardProject;
+using DAL.Models;
+using DAL.Repositories.Implementations;
 using DAL.Repositories.Interfaces;
 
 namespace BillboardsProject.View
@@ -21,22 +13,38 @@ namespace BillboardsProject.View
     /// </summary>
     public partial class BillboardAddSchedulePage : Page
     {
-        private ICreateNewScheduleRepository _createNewScheduleRepository;
-        private ICreateNewUserRepository _createNewUserRepository;
-        public BillboardAddSchedulePage(ICreateNewScheduleRepository сreateNewScheduleRepository, ICreateNewUserRepository createNewUserRepository)
+        private readonly CreateScheduleService _createScheduleService;
+        private  readonly ICreateNewScheduleRepository _createNewScheduleRepository;
+        private readonly ICreateNewUserRepository _createNewUserRepository;
+        private readonly ICreateNewBillboardRepository _createNewBillboardRepository;
+        private readonly ICreateNewVideoRepository _createNewVideoRepository;
+
+        private readonly ICreateNewScheduleAndVideoRepository _createNewScheduleAndVideoRepository;
+        public static Billboard Billboard { get; set; }
+
+        public BillboardAddSchedulePage(ICreateNewScheduleRepository сreateNewScheduleRepository, ICreateNewUserRepository createNewUserRepository, ICreateNewBillboardRepository createNewBillboardRepository, ICreateNewScheduleAndVideoRepository createNewScheduleAndVideoRepository, ICreateNewVideoRepository createNewVideoRepository)
         {
             InitializeComponent();
             _createNewScheduleRepository = сreateNewScheduleRepository;
             _createNewUserRepository = createNewUserRepository;
+            _createNewBillboardRepository = createNewBillboardRepository;
+            _createNewScheduleAndVideoRepository = createNewScheduleAndVideoRepository;
+            _createNewVideoRepository = createNewVideoRepository;
             var user = _createNewUserRepository.GetById(AuthorizationPage.UserId);
             var schedules =  _createNewScheduleRepository.GetAll();
             var workSchedules = schedules.Where(c => c.User == user);
-            schedulesGrid.ItemsSource = workSchedules;
+            schedulesGrid.ItemsSource = schedules;
+            _createScheduleService = new CreateScheduleService(_createNewBillboardRepository,_createNewScheduleRepository, _createNewScheduleAndVideoRepository, _createNewVideoRepository);
         }
 
+        private void Button_Click_Choose_Schedule(object sender, RoutedEventArgs e)
+        {
+            _createScheduleService.ChooseSchedule(sender);
+            this.NavigationService.Navigate(new UserBillboardsPage(_createNewBillboardRepository, _createNewScheduleRepository, _createNewScheduleAndVideoRepository, _createNewUserRepository, _createNewVideoRepository));
+        }
         private void Button_Click_Back(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new UserBillboardsPage());
+            this.NavigationService.Navigate(new UserBillboardsPage(_createNewBillboardRepository, _createNewScheduleRepository, _createNewScheduleAndVideoRepository, _createNewUserRepository, _createNewVideoRepository));
         }
     }
 }

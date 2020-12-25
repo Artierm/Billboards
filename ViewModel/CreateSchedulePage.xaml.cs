@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using DAL.Repositories.Implementations;
 using DAL.Repositories.Interfaces;
 
 namespace BillboardProject.View
@@ -24,12 +25,12 @@ namespace BillboardProject.View
         {
            var videos =  CheckVideos();
            CreateScheduleForUser(videos);
-            this.NavigationService.Navigate(new CreateSchedulePage());
+            this.NavigationService.Navigate(new SchedulePage(new CreateNewScheduleRepository(),new CreateNewBillboardRepository(), new CreateNewScheduleAndVideoRepository(), new CreateNewVideoRepository()));
         }
 
         public void Button_Click_Back(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new SchedulePage());
+            this.NavigationService.Navigate(new SchedulePage(new CreateNewScheduleRepository(), new CreateNewBillboardRepository(), new CreateNewScheduleAndVideoRepository(), new CreateNewVideoRepository()));
         }
 
         private void DynamicCheckBox()
@@ -85,7 +86,7 @@ namespace BillboardProject.View
         private void CreateScheduleForUser(List<Video> checkVideos)
         {
             var user = database.Users.FirstOrDefault(c => c.Id == AuthorizationPage.UserId);
-            Schedule schedule = new Schedule(null, user);
+            Schedule schedule = new Schedule(null, null, user);
             database.Schedules.Add(schedule);
             foreach (var video in checkVideos)
             {

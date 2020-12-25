@@ -17,29 +17,21 @@
                 <Grid>
                     <Button HorizontalAlignment="Right" Content="Back" Click="Button_Click_Back"  Style="{StaticResource MaterialDesignFlatButton}"/>
                 </Grid>
-                <DataGrid x:Name="shedulesGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25">
+                <DataGrid x:Name="schedulesAndVideosGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Path= Name}" Width="auto" />
-                        <DataGridTextColumn Header="Id billboards"  Binding="{Binding Path= IdBillboards}" Width="auto" />
-                        <DataGridTextColumn Header="Amount of videos" Binding="{Binding Path= AmountOfBillboards}" Width="auto" />
-                        <DataGridTemplateColumn Header="Download">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Content="Download"></Button>
+                        <DataGridTextColumn Header="Id schedule"  Binding="{Binding Path = Id}" Width="auto" />
+                        <DataGridTextColumn Header="Billboard" Binding="{Binding Path= BillboardAddress}" Width="auto" />
+                        <DataGridTemplateColumn Header="View schedule">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="View" Click="Button_Click_View_Schedule"></Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Delete">
+                        <DataGridTemplateColumn Header="Delete Schedule">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Delete"></Button>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Set">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Content="Set"></Button>
+                                    <Button Content="Delete" Click="Button_Click_Delete_Schedule"></Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

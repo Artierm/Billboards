@@ -32,7 +32,7 @@ namespace BillboardProject
 
         public void Button_Click_Back(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new UserBillboardsPage(new CreateNewBillboardRepository()));
+            this.NavigationService.Navigate(new UserBillboardsPage(new CreateNewBillboardRepository(), new CreateNewScheduleRepository() , new CreateNewScheduleAndVideoRepository(), new CreateNewUserRepository(), new CreateNewVideoRepository()));
         }
 
         public void Button_Click_View_Billboard(object sender, RoutedEventArgs e)

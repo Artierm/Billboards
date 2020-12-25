@@ -19,7 +19,7 @@ Title="Billboards" >
                 </Grid>
                 <TextBox x:Name="name_video" materialDesign:HintAssist.Hint="Enter name video" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <TextBox x:Name="time_video" materialDesign:HintAssist.Hint="Enter time video" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <Button Content = "Add billboard"   Margin="20" Width=" 150" Click="Button_LoadVideo"/>
+                <Button Content = "Add video"   Margin="20" Width=" 150" Click="Button_LoadVideo"/>
             </StackPanel>
         </Border>
     </Grid>
