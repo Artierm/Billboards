@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using BillboardsProject.Model.Services;
+using BillboardsProject.View;
 using DAL.Repositories.Interfaces;
 
 namespace BillboardProject
@@ -19,6 +21,8 @@ namespace BillboardProject
         private readonly ICreateNewUserRepository _createNewUserRepository;
         private readonly ICreateNewVideoRepository _createNewVideoRepository;
         private readonly ICreateNewLogRepository _createNewLogRepository;
+
+        private readonly NowPlayingService _nowPlayingService;
         public AdminViewBillboardPage(ICreateNewBillboardRepository createNewBillboardRepository,
             ICreateNewScheduleRepository createNewScheduleRepository,
             ICreateNewScheduleAndVideoRepository createNewScheduleAndVideoRepository,
@@ -32,6 +36,7 @@ namespace BillboardProject
             _createNewUserRepository = createNewUserRepository;
             _createNewLogRepository = createNewLogRepository;
             _createNewScheduleRepository = createNewScheduleRepository;
+            _nowPlayingService = new NowPlayingService(_createNewVideoRepository,_createNewScheduleAndVideoRepository,_createNewBillboardRepository, _createNewScheduleRepository);
             _adminViewBillboardService = new AdminViewBillboardService(_createNewBillboardRepository, _createNewLogRepository);
             string address = UserViewBillboardPage.BillboardAddress;
             var billboards = _createNewBillboardRepository.GetAll();
@@ -50,6 +55,15 @@ namespace BillboardProject
         {
             _adminViewBillboardService.DeleteBillboard(sender);
             this.NavigationService.Navigate(new AdminBillboardsPage(_createNewLogRepository, _createNewUserRepository, _createNewVideoRepository, _createNewBillboardRepository, _createNewScheduleAndVideoRepository, _createNewScheduleRepository));
+        }
+
+
+        public void Button_Click_View_Video(object sender, RoutedEventArgs e)
+        {
+            _nowPlayingService.ContextBillboard(sender, out Billboard billboard);
+            NowPlaying.Billboard = billboard;
+            NowPlayingService.NowPlay = _nowPlayingService.NowPlayVideoTime();
+            MessageBox.Show(NowPlayingService.NowPlay);
         }
     }
 }

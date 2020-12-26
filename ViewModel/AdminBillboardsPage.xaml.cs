@@ -24,7 +24,7 @@ namespace BillboardProject
             _createNewLogRepository = createNewLogRepository;
             _createNewScheduleRepository = createNewScheduleRepository;
             _adminBillboardsService = new AdminBillboardsService(_createNewBillboardRepository,_createNewLogRepository, _createNewUserRepository);
-            var billboards = createNewBillboardRepository.GetAll();
+            var billboards = _createNewBillboardRepository.GetAll();
             billsGrid.ItemsSource = billboards;
         }
 
