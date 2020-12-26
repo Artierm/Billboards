@@ -21,7 +21,7 @@ namespace BillboardProject.Service
         {
 
             Button btnSender = (Button)sender;
-            var dataContextFromButton = (DAL.Models.Billboard)btnSender.DataContext;
+            var dataContextFromButton = (Billboard)btnSender.DataContext;
 
             address = dataContextFromButton.Address;
             id = dataContextFromButton.Id;

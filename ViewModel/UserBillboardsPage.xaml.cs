@@ -1,5 +1,4 @@
 ﻿using BillboardProject.Service;
-using DAL.Repositories.Implementations;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -42,7 +41,7 @@ namespace BillboardProject
             UserViewBillboardPage.BillboardAddress = address;
             UserViewBillboardPage.BillboardId = id;
             UserViewBillboardPage.BillboardOwner = owner;
-            this.NavigationService.Navigate(new UserViewBillboardPage());
+            this.NavigationService.Navigate(new UserViewBillboardPage(_createNewVideoRepository,_createNewScheduleAndVideoRepository, _createNewBillboardRepository,_createNewScheduleRepository));
         }
 
         private void Button_Click_Back(object sender, RoutedEventArgs e)

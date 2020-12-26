@@ -90,7 +90,7 @@ namespace BillboardProject.View
             database.Schedules.Add(schedule);
             foreach (var video in checkVideos)
             {
-                ScheduleAndVideo scheduleAndVideo = new ScheduleAndVideo(video, schedule);
+                ScheduleAndVideo scheduleAndVideo = new ScheduleAndVideo(video,  schedule, video.NameOfVideo);
                 database.ScheduleAndVideo.Add(scheduleAndVideo);
             }
 

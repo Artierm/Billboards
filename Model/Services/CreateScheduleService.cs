@@ -4,6 +4,7 @@ using DAL.Models;
 using DAL.Repositories.Interfaces;
 using System.Windows.Controls;
 using BillboardsProject.View;
+using DAL.Context;
 
 namespace BillboardProject
 {
