@@ -16,22 +16,26 @@ namespace BillboardProject
         private readonly UserViewBillboardService _userViewBillboardService;
         private readonly NowPlayingService _nowPlayingService;
 
-        private readonly ICreateNewVideoRepository _createNewVideoRepository;
-        private readonly ICreateNewScheduleAndVideoRepository _createNewScheduleAndVideoRepository;
         private readonly ICreateNewBillboardRepository _createNewBillboardRepository;
         private readonly ICreateNewScheduleRepository _createNewScheduleRepository;
+        private readonly ICreateNewScheduleAndVideoRepository _createNewScheduleAndVideoRepository;
+        private readonly ICreateNewUserRepository _createNewUserRepository;
+        private readonly ICreateNewVideoRepository _createNewVideoRepository;
+        private readonly ICreateNewLogRepository _createNewLogRepository;
 
         public static int BillboardId { get; set; }
         public static string BillboardOwner { get; set; }
         public static string BillboardAddress { get; set; }
 
-        public UserViewBillboardPage(ICreateNewVideoRepository createNewVideoRepository, ICreateNewScheduleAndVideoRepository createNewScheduleAndVideoRepository, ICreateNewBillboardRepository createNewBillboardRepository, ICreateNewScheduleRepository createNewScheduleRepository)
+        public UserViewBillboardPage(ICreateNewBillboardRepository createNewBillboardRepository, ICreateNewScheduleRepository createNewScheduleRepository, ICreateNewScheduleAndVideoRepository createNewScheduleAndVideoRepository, ICreateNewUserRepository createNewUserRepository, ICreateNewVideoRepository createNewVideoRepository, ICreateNewLogRepository createNewLogRepository)
         {
             InitializeComponent();
-            _createNewVideoRepository = createNewVideoRepository;
-            _createNewScheduleAndVideoRepository = createNewScheduleAndVideoRepository;
-            _createNewBillboardRepository = createNewBillboardRepository;
             _createNewScheduleRepository = createNewScheduleRepository;
+            _createNewScheduleAndVideoRepository = createNewScheduleAndVideoRepository;
+            _createNewUserRepository = createNewUserRepository;
+            _createNewVideoRepository = createNewVideoRepository;
+            _createNewLogRepository = createNewLogRepository;
+            _createNewBillboardRepository = createNewBillboardRepository;
 
             _userViewBillboardService = new UserViewBillboardService();
             _nowPlayingService = new NowPlayingService(_createNewVideoRepository,_createNewScheduleAndVideoRepository, _createNewBillboardRepository, _createNewScheduleRepository);
@@ -46,7 +50,7 @@ namespace BillboardProject
         
         public void Button_Click_Back(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new UserBillboardsPage(new CreateNewBillboardRepository(), new CreateNewScheduleRepository() , new CreateNewScheduleAndVideoRepository(), new CreateNewUserRepository(), new CreateNewVideoRepository()));
+            this.NavigationService.Navigate(new UserBillboardsPage(_createNewBillboardRepository,_createNewScheduleRepository,_createNewScheduleAndVideoRepository, _createNewUserRepository, _createNewVideoRepository, _createNewLogRepository));
         }
 
         public void Button_Click_View_Video(object sender, RoutedEventArgs e)

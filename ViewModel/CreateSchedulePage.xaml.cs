@@ -13,9 +13,21 @@ namespace BillboardProject.View
     public partial class CreateSchedulePage : Page
     {
         private readonly DatabaseContext database;
-        public CreateSchedulePage()
+        private readonly ICreateNewUserRepository _createNewUserRepository;
+        private readonly ICreateNewVideoRepository _createNewVideoRepository;
+        private readonly ICreateNewLogRepository _createNewLogRepository;
+        private readonly ICreateNewBillboardRepository _createNewBillboardRepository;
+        private readonly ICreateNewScheduleAndVideoRepository _createNewScheduleAndVideoRepository;
+        private readonly ICreateNewScheduleRepository _createNewScheduleRepository;
+        public CreateSchedulePage(ICreateNewLogRepository createNewLogRepository, ICreateNewUserRepository createNewUserRepository, ICreateNewVideoRepository createNewVideoRepository, ICreateNewBillboardRepository createNewBillboardRepository, ICreateNewScheduleAndVideoRepository createNewScheduleAndVideoRepository, ICreateNewScheduleRepository createNewScheduleRepository)
         {
             InitializeComponent();
+            _createNewScheduleRepository = createNewScheduleRepository;
+            _createNewScheduleAndVideoRepository = createNewScheduleAndVideoRepository;
+            _createNewUserRepository = createNewUserRepository;
+            _createNewVideoRepository = createNewVideoRepository;
+            _createNewLogRepository = createNewLogRepository;
+            _createNewBillboardRepository = createNewBillboardRepository;
             database = new DatabaseContext();
       
             DynamicCheckBox();         
@@ -25,12 +37,12 @@ namespace BillboardProject.View
         {
            var videos =  CheckVideos();
            CreateScheduleForUser(videos);
-            this.NavigationService.Navigate(new SchedulePage(new CreateNewScheduleRepository(),new CreateNewBillboardRepository(), new CreateNewScheduleAndVideoRepository(), new CreateNewVideoRepository()));
+            this.NavigationService.Navigate(new SchedulePage(_createNewBillboardRepository, _createNewScheduleRepository, _createNewScheduleAndVideoRepository, _createNewUserRepository, _createNewVideoRepository, _createNewLogRepository));
         }
 
         public void Button_Click_Back(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new SchedulePage(new CreateNewScheduleRepository(), new CreateNewBillboardRepository(), new CreateNewScheduleAndVideoRepository(), new CreateNewVideoRepository()));
+            this.NavigationService.Navigate(new SchedulePage(_createNewBillboardRepository, _createNewScheduleRepository, _createNewScheduleAndVideoRepository, _createNewUserRepository, _createNewVideoRepository, _createNewLogRepository));
         }
 
         private void DynamicCheckBox()

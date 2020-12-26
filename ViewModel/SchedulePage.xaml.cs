@@ -9,19 +9,23 @@ namespace BillboardProject
 {
     public partial class SchedulePage : Page
     {
-        private readonly ICreateNewScheduleRepository _createNewScheduleRepository;
+
         private readonly ICreateNewBillboardRepository _createNewBillboardRepository;
+        private readonly ICreateNewScheduleRepository _createNewScheduleRepository;
         private readonly ICreateNewScheduleAndVideoRepository _createNewScheduleAndVideoRepository;
+        private readonly ICreateNewUserRepository _createNewUserRepository;
         private readonly ICreateNewVideoRepository _createNewVideoRepository;
+        private readonly ICreateNewLogRepository _createNewLogRepository;
 
         private readonly CreateScheduleService _createScheduleService;
-        public SchedulePage(ICreateNewScheduleRepository createNewScheduleRepository, ICreateNewBillboardRepository createNewBillboardRepository, ICreateNewScheduleAndVideoRepository createNewScheduleAndVideoRepository, ICreateNewVideoRepository createNewVideoRepository)
+        public SchedulePage(ICreateNewBillboardRepository createNewBillboardRepository, ICreateNewScheduleRepository createNewScheduleRepository, ICreateNewScheduleAndVideoRepository createNewScheduleAndVideoRepository, ICreateNewUserRepository createNewUserRepository, ICreateNewVideoRepository createNewVideoRepository, ICreateNewLogRepository createNewLogRepository)
         {
             InitializeComponent();
             _createNewScheduleRepository = createNewScheduleRepository;
-            _createNewBillboardRepository = createNewBillboardRepository;
             _createNewScheduleAndVideoRepository = createNewScheduleAndVideoRepository;
+            _createNewUserRepository = createNewUserRepository;
             _createNewVideoRepository = createNewVideoRepository;
+            _createNewLogRepository = createNewLogRepository;
             schedulesAndVideosGrid.ItemsSource = _createNewScheduleRepository.GetAll();
             _createScheduleService = new CreateScheduleService(_createNewBillboardRepository, _createNewScheduleRepository, _createNewScheduleAndVideoRepository, _createNewVideoRepository);
 
@@ -29,24 +33,24 @@ namespace BillboardProject
 
         public void Button_Click_Back(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new UserRoomPage());
+            this.NavigationService.Navigate(new UserRoomPage(_createNewLogRepository, _createNewUserRepository, _createNewVideoRepository, _createNewBillboardRepository, _createNewScheduleAndVideoRepository, _createNewScheduleRepository));
         }
 
         public void Button_Click_CreateSchedule(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new CreateSchedulePage());
+            this.NavigationService.Navigate(new CreateSchedulePage(_createNewLogRepository, _createNewUserRepository, _createNewVideoRepository, _createNewBillboardRepository, _createNewScheduleAndVideoRepository, _createNewScheduleRepository));
         }
 
         public void Button_Click_Delete_Schedule(object sender, RoutedEventArgs e)
         {
             _createScheduleService.DeleteSchedule(sender);
-            this.NavigationService.Navigate(new SchedulePage(_createNewScheduleRepository, _createNewBillboardRepository, _createNewScheduleAndVideoRepository, _createNewVideoRepository));
+            this.NavigationService.Navigate(new SchedulePage(_createNewBillboardRepository,  _createNewScheduleRepository, _createNewScheduleAndVideoRepository, _createNewUserRepository, _createNewVideoRepository, _createNewLogRepository));
         }
 
         public void Button_Click_View_Schedule(object sender, RoutedEventArgs e)
         {
              ViewUserSchedulePage.ScheduleAndVideos = _createScheduleService.ViewSchedule(sender);
-            this.NavigationService.Navigate(new ViewUserSchedulePage());
+            this.NavigationService.Navigate(new ViewUserSchedulePage(_createNewLogRepository, _createNewUserRepository, _createNewVideoRepository, _createNewBillboardRepository, _createNewScheduleAndVideoRepository, _createNewScheduleRepository));
         }
 
     }

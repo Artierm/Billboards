@@ -14,13 +14,14 @@ namespace BillboardProject
 
         private readonly CreateScheduleService _createScheduleService;
 
-        private  readonly  ICreateNewBillboardRepository _createNewBillboardRepository;
+        private readonly ICreateNewBillboardRepository _createNewBillboardRepository;
         private readonly ICreateNewScheduleRepository _createNewScheduleRepository;
         private readonly ICreateNewScheduleAndVideoRepository _createNewScheduleAndVideoRepository;
         private readonly ICreateNewUserRepository _createNewUserRepository;
         private readonly ICreateNewVideoRepository _createNewVideoRepository;
+        private readonly ICreateNewLogRepository _createNewLogRepository;
 
-        public UserBillboardsPage(ICreateNewBillboardRepository createNewBillboardRepository, ICreateNewScheduleRepository createNewScheduleRepository, ICreateNewScheduleAndVideoRepository createNewScheduleAndVideoRepository, ICreateNewUserRepository createNewUserRepository, ICreateNewVideoRepository createNewVideoRepository)
+        public UserBillboardsPage(ICreateNewBillboardRepository createNewBillboardRepository, ICreateNewScheduleRepository createNewScheduleRepository, ICreateNewScheduleAndVideoRepository createNewScheduleAndVideoRepository, ICreateNewUserRepository createNewUserRepository, ICreateNewVideoRepository createNewVideoRepository, ICreateNewLogRepository createNewLogRepository)
         {
             InitializeComponent();
             _createNewBillboardRepository = createNewBillboardRepository;
@@ -32,6 +33,8 @@ namespace BillboardProject
             _createNewScheduleAndVideoRepository = createNewScheduleAndVideoRepository;
             _createNewUserRepository = createNewUserRepository;
             _createNewVideoRepository = createNewVideoRepository;
+            _createNewLogRepository = createNewLogRepository;
+
             _createScheduleService = new CreateScheduleService(_createNewBillboardRepository, _createNewScheduleRepository, _createNewScheduleAndVideoRepository, _createNewVideoRepository);
         }
 
@@ -41,19 +44,19 @@ namespace BillboardProject
             UserViewBillboardPage.BillboardAddress = address;
             UserViewBillboardPage.BillboardId = id;
             UserViewBillboardPage.BillboardOwner = owner;
-            this.NavigationService.Navigate(new UserViewBillboardPage(_createNewVideoRepository,_createNewScheduleAndVideoRepository, _createNewBillboardRepository,_createNewScheduleRepository));
+            this.NavigationService.Navigate(new UserViewBillboardPage(_createNewBillboardRepository, _createNewScheduleRepository,_createNewScheduleAndVideoRepository,_createNewUserRepository, _createNewVideoRepository, _createNewLogRepository));
         }
 
         private void Button_Click_Back(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new UserRoomPage());
+            this.NavigationService.Navigate(new UserRoomPage(_createNewLogRepository, _createNewUserRepository, _createNewVideoRepository, _createNewBillboardRepository, _createNewScheduleAndVideoRepository, _createNewScheduleRepository));
         }
 
         private void Button_Click_Add_Schedule (object sender, RoutedEventArgs e)
         {
             _createScheduleService.AddBillboardToSchedule(sender, out Billboard billboard);
             BillboardAddSchedulePage.Billboard = billboard;
-            this.NavigationService.Navigate(new BillboardAddSchedulePage(_createNewScheduleRepository, _createNewUserRepository, _createNewBillboardRepository, _createNewScheduleAndVideoRepository, _createNewVideoRepository));
+            this.NavigationService.Navigate(new BillboardAddSchedulePage(_createNewLogRepository, _createNewUserRepository, _createNewVideoRepository, _createNewBillboardRepository, _createNewScheduleAndVideoRepository, _createNewScheduleRepository));
         }
 
         private void Button_Click_View_Registration(object sender, RoutedEventArgs e)
